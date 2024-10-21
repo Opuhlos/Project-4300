@@ -5,7 +5,11 @@ const grotesk = Space_Grotesk({
     subsets: ['latin']
 });
 
-export default function NavigationLink({label}) {
+interface NavigationLinkProps {
+    label: string;
+  }
+
+export default function NavigationLink({label}:NavigationLinkProps) {
     return(
         <a className={`${grotesk.className}`}>{label}</a>
     );
