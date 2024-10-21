@@ -6,6 +6,7 @@ const grotesk = Space_Grotesk({
     subsets: ['latin']
 });
 
+
 export default function Navigation() {
     return(
         <div className="bg-background mx-10 mt-5 flex justify-between items-center">
