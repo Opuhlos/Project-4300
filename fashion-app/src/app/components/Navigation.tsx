@@ -1,11 +1,11 @@
 import { Space_Grotesk } from '@next/font/google';
 import NavigationLink from './NavigationLink';
+import NavigationButton from './NavigationButton';
 
 const grotesk = Space_Grotesk({
     weight: ['400', '700'],
     subsets: ['latin']
 });
-
 
 export default function Navigation() {
     return(
@@ -19,9 +19,10 @@ export default function Navigation() {
                 <h1 className={`${grotesk.className} font-semibold text-2xl`}>StyleLink</h1>
             </div>
 
-        <div className="flex space-x-7">
+        <div className="flex space-x-7 items-center">
             <NavigationLink label={"About Us"}/>
-            <NavigationLink label={"Creators"}/>
+            <NavigationLink label={"Creations"}/>
+            <NavigationButton/>
         </div>
             
             </div>

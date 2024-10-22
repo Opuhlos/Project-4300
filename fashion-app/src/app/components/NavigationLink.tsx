@@ -7,7 +7,7 @@ const grotesk = Space_Grotesk({
 
 interface NavigationLinkProps {
     label: string;
-  }
+}
 
 export default function NavigationLink({label}:NavigationLinkProps) {
     return(
