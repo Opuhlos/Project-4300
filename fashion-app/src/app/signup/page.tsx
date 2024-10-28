@@ -1,7 +1,7 @@
 export default function Home() {
     return (
       <div>
-        <p>Styles Gallery Page</p>
+        <p>Become a Creator / Sign Up Page</p>
       </div>
     );
   }
