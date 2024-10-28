@@ -7,6 +7,6 @@ interface NavigationLinkProps {
 
 export default function NavigationLink({label, dest}:NavigationLinkProps) {
     return(
-        <a href={dest} className={`${grotesk.className}`}>{label}</a>
+        <a href={dest} className={`${grotesk.className} text-xl`}>{label}</a>
     );
 }
