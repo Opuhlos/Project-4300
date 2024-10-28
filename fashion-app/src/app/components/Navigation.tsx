@@ -7,14 +7,20 @@ import Button from './Button';
 import { useRouter } from 'next/navigation'
 
 export default function Navigation() {
-    {/* Button handleClick*/}
     const router = useRouter();
+    const isLoggedIn = true;
+ 
     const handleSignUpClick = () => {
         router.push('/signup');
     };
+
     const handleStyleLinkClick = () => {
         router.push('/');
     };
+
+    const handleCreateAStyleClick = () => {
+        console.log("Creating a Style not yet implemented");
+    }
 
     return(
         <div className="bg-background mx-10 mt-5 flex justify-between items-center">
@@ -23,7 +29,10 @@ export default function Navigation() {
             
             <div className="flex space-x-7 items-center">
                 <NavigationLink label={"Styles"} dest="/styles"/>
-                <NavigationLink label={"Log In"} dest="/login"/>
+
+                {isLoggedIn ? <Button label={"Create a Style"} styles={"px-5 py-3"} children={""} handleClick={handleCreateAStyleClick} /> : <NavigationLink label={"Log In"} dest="/login"/> }
+
+                
                 <Button label={"Become a Creator"} styles={"px-5 py-3"} children={""} handleClick={handleSignUpClick} />
             </div>
             
