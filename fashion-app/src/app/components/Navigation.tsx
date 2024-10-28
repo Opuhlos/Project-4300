@@ -3,7 +3,7 @@
 import StyleLink from './StyleLink';
 import NavigationLink from './NavigationLink';
 import Button from './Button';
-import Profile from './Profile';
+import ProfileIcon from './ProfileIcon';
 
 import { useRouter } from 'next/navigation'
 
@@ -33,7 +33,7 @@ export default function Navigation() {
 
                 {isLoggedIn ? <Button label={"Create a Style"} styles={"px-[35px] py-[20px]"} children={""} handleClick={handleCreateAStyleClick} /> : <NavigationLink label={"Log In"} dest="/login"/> }
         
-                {isLoggedIn ? <Profile image="/images/Naruto.jpg" alt="Profile Picture" height="70px" width="70px"/> : <Button label={"Become a Creator"} styles={"px-[35px] py-[20px]"} children={""} handleClick={handleSignUpClick} />}
+                {isLoggedIn ? <ProfileIcon image="/images/Naruto.jpg" alt="Profile Picture" height="70px" width="70px"/> : <Button label={"Become a Creator"} styles={"px-[35px] py-[20px]"} children={""} handleClick={handleSignUpClick} />}
             </div>
             
         </div>
