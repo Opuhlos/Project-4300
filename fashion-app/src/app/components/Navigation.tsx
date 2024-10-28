@@ -9,9 +9,8 @@ export default function Navigation() {
             <StyleLink/>
 
             <div className="flex space-x-7 items-center">
-                <NavigationLink label={"About Us"}/>
-                <NavigationLink label={"Creations"}/>
-                <NavigationButton/>
+                <NavigationLink label={"Styles"} dest="/styles"/>
+                <NavigationButton label={"Become a Creator"}/>
             </div>
             
         </div>

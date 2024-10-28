@@ -2,10 +2,11 @@ import { grotesk } from './Fonts';
 
 interface NavigationLinkProps {
     label: string;
+    dest: string;
 }
 
-export default function NavigationLink({label}:NavigationLinkProps) {
+export default function NavigationLink({label, dest}:NavigationLinkProps) {
     return(
-        <a className={`${grotesk.className}`}>{label}</a>
+        <a href={dest} className={`${grotesk.className}`}>{label}</a>
     );
 }

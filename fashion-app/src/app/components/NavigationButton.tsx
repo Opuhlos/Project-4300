@@ -1,9 +1,13 @@
 import { grotesk } from './Fonts';
 
-export default function NavigationButton() {
+interface NavigationButtonProps {
+    label: string;
+}
+
+export default function NavigationButton({label}:NavigationButtonProps) {
     return(
         <button className={`${grotesk.className} border rounded-[14px] px-5 py-3 border-black`}>
-            Become a Creator
+            {label}
         </button>
     );
 }
