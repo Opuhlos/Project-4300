@@ -1,15 +1,10 @@
+import { useRouter } from 'next/navigation'
+
 import ProfileIcon from "./ProfileIcon";
 import AccountDropDown from "./AccountDropDown";
 import Button from "./Button";
 
-import { useRouter } from 'next/navigation'
-
-interface AccountDropDownStateProps {
-    isDropDownOpen: boolean;
-    setDropDownOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export default function AccountBar( {isDropDownOpen, setDropDownOpen}:AccountDropDownStateProps ) {
+export default function AccountBar() {
 
     const router = useRouter();
 
@@ -23,7 +18,7 @@ export default function AccountBar( {isDropDownOpen, setDropDownOpen}:AccountDro
         <div className={"flex items-center space-x-2"}>
             <Button label={""} styles={"p-0 mx-0 border-none"} children={ <ProfileIcon image="/images/Naruto.jpg" alt="Profile Picture" height="70px" width="70px"/> } handleClick={handleProfileClick}/>
 
-            <AccountDropDown isDropDownOpen={isDropDownOpen} setDropDownOpen={setDropDownOpen}/> 
+            <AccountDropDown/> 
         </div>
     );
 }

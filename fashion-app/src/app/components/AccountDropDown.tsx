@@ -1,23 +1,24 @@
 import { useEffect } from "react";
+import { useState } from "react";
 
 import Button from "./Button";
 import ArrowDropDownSVG from "./svg/ArrowDropDownSVG";
+import DropDown from "./DropDown";
 
-interface AccountDropDownStateProps {
-    isDropDownOpen: boolean;
-    setDropDownOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+export default function AccountDropDown() {
+    const [isAccountDropDownOpen, setAccountDropDownOpen] = useState(false);
 
-export default function AccountDropDown({isDropDownOpen, setDropDownOpen}:AccountDropDownStateProps ) {
     const handleAccountDropDownClick = () => {
-        setDropDownOpen(isDropDownOpen => !isDropDownOpen)
+        setAccountDropDownOpen(isAccountDropDownOpen => !isAccountDropDownOpen)
     }
 
     // Closes the account drop down if clicked outside
     useEffect(() => {
         // Handler to close the drop down if clicked outside
-        const handler = () => {
-            setDropDownOpen(false);
+        const handler = (e) => {
+            if(e.target){
+                setAccountDropDownOpen(false);
+            }
         }
 
         document.addEventListener("mousedown", handler)
@@ -26,6 +27,10 @@ export default function AccountDropDown({isDropDownOpen, setDropDownOpen}:Accoun
     
 
     return (
-        <Button label={""} styles={"p-0 mx-0 rounded-full border-none hover:bg-orange"} children={<ArrowDropDownSVG/>} handleClick={ handleAccountDropDownClick }/>
+        <div>
+            <Button label={""} styles={"p-0 mx-0 rounded-full border-none hover:bg-orange"} children={<ArrowDropDownSVG/>} handleClick={ handleAccountDropDownClick }/>
+
+            {isAccountDropDownOpen && <DropDown/>}
+        </div>
     );
 }
