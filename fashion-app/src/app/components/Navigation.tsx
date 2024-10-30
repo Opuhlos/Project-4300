@@ -20,7 +20,7 @@ export default function Navigation() {
     };
 
     const handleCreateAStyleClick = () => {
-        console.log("Creating a Style not yet implemented");
+        alert("Creating a Style not yet implmented. But the button works!")
     }
 
     return(
