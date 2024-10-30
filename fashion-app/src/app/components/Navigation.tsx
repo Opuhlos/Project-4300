@@ -1,12 +1,13 @@
 "use client";
 
+import { useRouter } from 'next/navigation'
+import { useState } from 'react';
+
 import StyleLink from './StyleLink';
 import NavigationLink from './NavigationLink';
 import Button from './Button';
-import ProfileIcon from './ProfileIcon';
+import DropDown from "./DropDown";
 import AccountBar from './AccountBar';
-
-import { useRouter } from 'next/navigation'
 
 export default function Navigation() {
     const router = useRouter();
@@ -24,6 +25,9 @@ export default function Navigation() {
         alert("Creating a Style not yet implmented. But the button works!")
     }
 
+    // Lifting State DropDown for Account
+    const [isAccountDropDownOpen, setAccountDropDownOpen] = useState(false);
+
     return(
         <div className="bg-background mx-[100px] mt-[40px] flex justify-between items-center">
             
@@ -34,8 +38,10 @@ export default function Navigation() {
 
                 {isLoggedIn ? <Button label={"Create a Style"} styles={"px-[35px] py-[20px]"} children={""} handleClick={handleCreateAStyleClick} /> : <NavigationLink label={"Log In"} dest="/login"/> }
         
-                {isLoggedIn ? <AccountBar/>: <Button label={"Become a Creator"} styles={"px-[35px] py-[20px]"} children={""} handleClick={handleSignUpClick} />}
+                {isLoggedIn ? <AccountBar isDropDownOpen={isAccountDropDownOpen} setDropDownOpen={setAccountDropDownOpen} />: <Button label={"Become a Creator"} styles={"px-[35px] py-[20px]"} children={""} handleClick={handleSignUpClick} />}
             </div>
+
+            {isAccountDropDownOpen && <DropDown/>}
             
         </div>
     );
