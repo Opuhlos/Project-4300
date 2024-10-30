@@ -28,8 +28,8 @@ export default function AccountDropDown() {
     });
 
     return (
-        <div ref={areaRef}>
-            <Button label={""} styles={"p-0 mx-0 rounded-full border-none hover:bg-orange"} children={<ArrowDropDownSVG/>} handleClick={ handleAccountDropDownClick }/>
+        <div className="relative inline-block" ref={areaRef}>
+            <Button label={""} styles={`p-0 mx-0 rounded-full border-none hover:bg-orange ${isAccountDropDownOpen ? `bg-orange` : `bg-background`} `} children={<ArrowDropDownSVG/>} handleClick={ handleAccountDropDownClick }/>
 
             {isAccountDropDownOpen && <DropDown/>}
         </div>
