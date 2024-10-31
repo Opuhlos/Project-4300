@@ -29,9 +29,9 @@ export default function Navigation() {
             <Button label={""} styles={"p-0 mx-0 border-none"} children={<StyleLink/>} handleClick={handleStyleLinkClick} />
             
             <div className="flex space-x-[40px] items-center">
-                <NavigationLink label={"Styles"} dest="/styles"/>
+                <NavigationLink styles={"text-xl"} label={"Styles"} dest="/styles"/>
 
-                {isLoggedIn ? <Button label={"Create a Style"} styles={"px-[35px] py-[20px]"} children={""} handleClick={handleCreateAStyleClick} /> : <NavigationLink label={"Log In"} dest="/login"/> }
+                {isLoggedIn ? <Button label={"Create a Style"} styles={"px-[35px] py-[20px]"} children={""} handleClick={handleCreateAStyleClick} /> : <NavigationLink styles={"text-xl"} label={"Log In"} dest="/login"/> }
         
                 {isLoggedIn ? <AccountBar/>: <Button label={"Become a Creator"} styles={"px-[35px] py-[20px]"} children={""} handleClick={handleSignUpClick} />}
             </div>
