@@ -13,6 +13,7 @@ const config: Config = {
         astra: "#FFECBD",
         orange: "#FFBF5F",
         dark: "#191A23",
+        darkLighten: "#362a26",
       }
     }
   },
