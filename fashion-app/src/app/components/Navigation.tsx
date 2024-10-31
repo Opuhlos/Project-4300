@@ -31,9 +31,9 @@ export default function Navigation() {
             <div className="flex space-x-[40px] items-center">
                 <NavigationLink styles={"text-xl"} label={"Styles"} dest="/styles"/>
 
-                {isLoggedIn ? <Button label={"Create a Style"} styles={"text-xl px-[35px] py-[20px]"} children={""} handleClick={handleCreateAStyleClick} /> : <NavigationLink styles={"text-xl"} label={"Log In"} dest="/login"/> }
+                {isLoggedIn ? <Button label={"Create a Style"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleCreateAStyleClick} /> : <NavigationLink styles={"text-xl"} label={"Log In"} dest="/login"/> }
         
-                {isLoggedIn ? <AccountBar/>: <Button label={"Become a Creator"} styles={"text-xl px-[35px] py-[20px]"} children={""} handleClick={handleSignUpClick} />}
+                {isLoggedIn ? <AccountBar/>: <Button label={"Become a Creator"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleSignUpClick} />}
             </div>
             
         </div>
