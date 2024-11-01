@@ -5,9 +5,13 @@ import { useRouter } from 'next/navigation'
 import StyleLink from './StyleLink';
 import NavigationLink from './NavigationLink';
 import Button from './Button';
-import AccountBar from './AccountBar';
+import ProfileMenu from './ProfileMenu';
 
-export default function Navigation() {
+interface NavigationProps {
+    isHome: boolean;
+}
+
+export default function Navigation( {isHome}:NavigationProps ) {
     const router = useRouter();
     const isLoggedIn = true;
  
@@ -33,7 +37,7 @@ export default function Navigation() {
 
                 {isLoggedIn ? <Button label={"Create a Style"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleCreateAStyleClick} /> : <NavigationLink styles={"text-xl"} label={"Log In"} dest="/login"/> }
         
-                {isLoggedIn ? <AccountBar/>: <Button label={"Become a Creator"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleSignUpClick} />}
+                {isLoggedIn ? <ProfileMenu/>: <Button label={"Become a Creator"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleSignUpClick} />}
             </div>
             
         </div>

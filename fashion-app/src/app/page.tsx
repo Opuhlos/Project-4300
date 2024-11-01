@@ -1,10 +1,10 @@
 import Navigation from "./components/Navigation";
-import DropDown from "./components/DropDown";
+import DropDown from "./components/ProfileDropDownDisplay";
 
 export default function Home() {
   return (
     <div>
-      <Navigation/>
+      <Navigation isHome={true}/>
      
     </div>
   );
