@@ -9,11 +9,11 @@ import ProfileMenu from './ProfileMenu';
 
 interface NavigationProps {
     isHome: boolean;
+    isLoggedIn: boolean;
 }
 
-export default function Navigation( {isHome}:NavigationProps ) {
+export default function Navigation( {isHome, isLoggedIn}:NavigationProps ) {
     const router = useRouter();
-    const isLoggedIn = true;
  
     const handleSignUpClick = () => {
         router.push('/signup');
@@ -27,10 +27,13 @@ export default function Navigation( {isHome}:NavigationProps ) {
         alert("Creating a Style not yet implmented. But the button works!")
     }
 
+    const mx = isHome ? "mx-[100px]" : "mx-[20px]";
+    const mt = isHome ? "mt-[40px]" : "mt-[25px]";
+
     return(
-        <div className="bg-background mx-[100px] mt-[40px] flex justify-between items-center">
+        <div className={`bg-background ${mx} ${mt} flex justify-between items-center`}>
             
-            <Button label={""} styles={"p-0 mx-0 border-none"} children={<StyleLink/>} handleClick={handleStyleLinkClick} />
+            <Button label={""} styles={"p-0 mx-0 border-none"} children={<StyleLink isHome={isHome}/>} handleClick={handleStyleLinkClick} />
             
             <div className="flex space-x-[40px] items-center">
                 <NavigationLink styles={"text-xl"} label={"Styles"} dest="/styles"/>

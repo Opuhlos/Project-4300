@@ -4,8 +4,7 @@ import DropDown from "./components/ProfileDropDownDisplay";
 export default function Home() {
   return (
     <div>
-      <Navigation isHome={true}/>
-     
+      <Navigation isHome={true} isLoggedIn={true}/>
     </div>
   );
 }
