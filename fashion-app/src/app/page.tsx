@@ -1,10 +1,15 @@
 import Navigation from "./components/Navigation";
-import DropDown from "./components/ProfileDropDownDisplay";
+import Splash from "./components/Splash";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
     <div>
-      <Navigation isHome={true} isLoggedIn={true}/>
+      <Navigation isHome={true} isLoggedIn={false}/>
+
+      <Splash/> 
+
+      <Footer/>
     </div>
   );
 }
