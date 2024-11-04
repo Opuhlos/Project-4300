@@ -8,7 +8,7 @@ export default function ProfileHeader ()  {
   return (
     <header className={`flex items-center justify-between px-8 py-4 ${grotesk.className}`}>
       <div className="flex items-center space-x-4">
-        <h1 className="text-4xl">Your Closet</h1>
+        <h1 className={`text-4xl ${grotesk.className}`}>Your Closet</h1>
       </div>
       <SearchBar/>
     </header>
