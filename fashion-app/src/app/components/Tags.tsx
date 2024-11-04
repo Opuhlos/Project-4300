@@ -19,7 +19,7 @@ interface TagProps {
 function Tag({tag}: TagProps) {
     return(
         <>
-            <button className="bg-taggrey p-3 outline rounded-3xl mr-3 pt-1.5 pb-1.5 text-white text-sm hover:bg-darkerorange hover:outline-lightorange">{tag}</button>
+            <button className="bg-taggrey p-3 outline rounded-3xl mr-3 pt-1.5 pb-1.5 text-white text-sm hover:bg-darkerOrange hover:outline-orange">{tag}</button>
         </>
     );
 }
