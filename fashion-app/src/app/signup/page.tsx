@@ -7,7 +7,7 @@ import { useState } from 'react';
 export default function Home() {
     return (
       <form>
-      <div className = "flex justify-center items-center min-h-screen bg-gray-100">
+      <div className = "flex justify-center items-center min-h-screen">
       <div className = "bg-astra rounded-3xl shadow-lg flex flex-row justify-center items-center w-1/2.5 border border-b-8 border-black ">
         <div className = "bg-astra rounded-3xl flex-col">
         <div className = "my-5 mx-10 mt-10">
