@@ -1,7 +1,11 @@
+
+import ProfileHeader from "../components/ProfileHeader";
+import Profile from "../components/ProfileIcon";
+
 export default function Home() {
     return (
       <div>
-        <p>Profile Page</p>
+        <ProfileHeader/>
       </div>
     );
   }
