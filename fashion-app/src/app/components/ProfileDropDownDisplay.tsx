@@ -21,9 +21,9 @@ export default function DropDown() {
         // Z indec ensures the dropdown displays on top of other elements such as the search bar
         <div className={"absolute border border-hidden rounded-[12px] top-[70px] right-[0px] flex flex-col bg-dark py-4 w-40 z-50"}>
             
-            <IconButton icon={<UserSVG/>} label={"View Profile"} styles={""} handleClick={handleViewprofile}/>
+            <IconButton icon={<UserSVG/>} label={"View Profile"} styles={"pl-3 bg-dark hover:bg-darkLighten flex items-center space-x-2 py-1"} styles2={"hover:underline text-white text-base"} handleClick={handleViewprofile}/>
 
-            <IconButton icon={<LogOutSVG/>} label={"Logout"} styles={""} handleClick={handleLogout}/>
+            <IconButton icon={<LogOutSVG/>} label={"Logout"} styles={"pl-3 bg-dark hover:bg-darkLighten flex items-center space-x-2 py-1"} styles2={"hover:underline text-white text-base"} handleClick={handleLogout}/>
 
         </div>
     );
