@@ -9,10 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#fff9f0",
-        lightorange: "#FFBF5F",
-        darkerorange: "#ffa216",
-        dark: "#191a23",
+        background: "#FFF9F0",
+        astra: "#FFECBD",
+        orange: "#FFBF5F",
+        darkerOrange: "#FFA216",
+        dark: "#191A23",
+        darkLighten: "#362a26",
         ourgrey: "#f3f3f3",
         taggrey: "#3C3C43"
       }
