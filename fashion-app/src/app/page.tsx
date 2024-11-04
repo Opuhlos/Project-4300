@@ -8,7 +8,7 @@ export default function Home() {
     <div>
       <Navigation isHome={true} isLoggedIn={false}/>
 
-      <RegularCard/> 
+      <Splash/> 
 
       <Footer/>
     </div>

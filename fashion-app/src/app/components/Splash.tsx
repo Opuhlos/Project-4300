@@ -15,7 +15,7 @@ export default function SplashInfo() {
 
     return(
         
-        <div className={`${grotesk.className} mx-[100px]  flex`}>
+        <div className={`${grotesk.className} mx-20 flex`}>
 
             <div className={"flex flex-col gap-y-[35px] w-[520px] mt-[75px]"}>
                 <p className={"text-6xl font-medium"}>
