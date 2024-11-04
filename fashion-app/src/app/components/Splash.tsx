@@ -15,9 +15,9 @@ export default function SplashInfo() {
 
     return(
         
-        <div className={`${grotesk.className} mx-20 flex`}>
+        <div className={`${grotesk.className} mx-24  flex`}>
 
-            <div className={"flex flex-col gap-y-[35px] w-[520px] mt-[75px]"}>
+            <div className={"flex flex-col gap-y-9 w-5/12 mt-16"}>
                 <p className={"text-6xl font-medium"}>
                     Inspire your 
                     <span className={"text-darkerOrange"}> style</span>, 
@@ -27,10 +27,10 @@ export default function SplashInfo() {
 
                 <p>Our selection of user curated pieces offers trendy outfits for your day-to-day with links to where to buy for your convenience. Fill out your profile to select your unique tags today!</p>
 
-                <Button label={"Find your style"} styles={"text-xl px-[10px] py-[20px] bg-dark text-white hover:bg-darkerOrange w-[220px]"} children={""} handleClick={handleFindYourStyleClick} />
+                <Button label={"Find your style"} styles={"text-xl px-3 py-5 bg-dark text-white hover:bg-darkerOrange w-56"} children={""} handleClick={handleFindYourStyleClick} />
             </div>
 
-            <div className={"flex-1 place-items-center mt-[40px]"}>
+            <div className={"flex-1 place-items-center mt-10"}>
                 <Image className={"object-cover"} src={"/images/splash.png"} alt={"An assortment of stylized illustrations of clothing items"} width={600} height={600}/>
             </div>
 
