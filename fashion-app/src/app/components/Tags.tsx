@@ -1,19 +1,24 @@
+"use client"
+
 import Image from "next/image";
 import Button from "./Button";
 import { grotesk } from './Fonts';
-import plusIconSVG from "./svg/plusIconSVG";
+import PlusIconSVG from "./svg/PlusIconSVG";
+import IconButton from "./IconButton";
 // import User from "./User" or something similar
 
 const tempTagArray = [
-    { tag: 'Fall' },
-    { tag: 'Neutral'}, 
+    { tag: 'Fall' }, 
     { tag: 'Casual' },
     { tag: 'Athleisure' }
 ];
 
+const handleAddTag = () => {
+    
+};
+
 interface TagProps {
     tag: string;
-    adding: boolean;
 }
 
 function Tag({tag}: TagProps) {
@@ -24,10 +29,10 @@ function Tag({tag}: TagProps) {
     );
 }
 
-function addingTag({tag}: TagProps) {
+function AddingTag() {
     return(
         <>
-            <button className="bg-taggrey p-3 outline rounded-3xl mr-3 pt-1.5 pb-1.5 text-white text-sm">Tag</button>
+            <IconButton label='Tag' styles='flex p-2 gap-1 outline outline-taggrey rounded-3xl mr-3 pt-1.5 pb-1.5 text-sm' styles2='text-taggrey font-semibold' icon={<PlusIconSVG />} handleClick={handleAddTag}/>
         </>
     );
 }
@@ -36,12 +41,12 @@ function addingTag({tag}: TagProps) {
 export default function Tags() {
 
     const isOwner = true;
-    const adding = false;
+    const adding = true;
 
     return(
-        <div className="flex-col">
+        <div className="flex">
             {tempTagArray.map((item) => <Tag key={item.tag} tag={item.tag} />)}
-            {adding ? <Tag />}
+            {adding ? <AddingTag /> : <></>}
         </div>
     );
 }

@@ -46,8 +46,8 @@ function Item({imgType, type, store, urlToBuy}: ItemProps) {
                 alt="Picture of clothing type"
             />
             <div className="rows-2 gap-y-1">
-                <h2 className="font-bold md:text-lg lg:text-2xl lg:pt-6">{type} - [ {store} ]</h2>
-                <p className="text-gray-500">{urlToBuy}</p>
+                <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">{type} - [ {store} ]</h2>
+                <p className="text-gray-500"><a >{urlToBuy}</a></p>
 
             </div>
         </div>
