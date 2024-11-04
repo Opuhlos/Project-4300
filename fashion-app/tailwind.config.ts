@@ -10,6 +10,11 @@ const config: Config = {
     extend: {
       colors: {
         background: "#fff9f0",
+        lightorange: "#FFBF5F",
+        darkerorange: "#ffa216",
+        dark: "#191a23",
+        ourgrey: "#f3f3f3",
+        taggrey: "#3C3C43"
       }
     }
   },
