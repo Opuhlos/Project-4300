@@ -5,11 +5,15 @@ import { useRouter } from 'next/navigation'
 import StyleLink from './StyleLink';
 import NavigationLink from './NavigationLink';
 import Button from './Button';
-import AccountBar from './AccountBar';
+import ProfileMenu from './ProfileMenu';
 
-export default function Navigation() {
+interface NavigationProps {
+    isHome: boolean;
+    isLoggedIn: boolean;
+}
+
+export default function Navigation( {isHome, isLoggedIn}:NavigationProps ) {
     const router = useRouter();
-    const isLoggedIn = true;
  
     const handleSignUpClick = () => {
         router.push('/signup');
@@ -23,17 +27,20 @@ export default function Navigation() {
         alert("Creating a Style not yet implmented. But the button works!")
     }
 
+    const mx = isHome ? "mx-[100px]" : "mx-[20px]";
+    const mt = isHome ? "mt-[40px]" : "mt-[25px]";
+
     return(
-        <div className="bg-background mx-[100px] mt-[40px] flex justify-between items-center">
+        <div className={`bg-background ${mx} ${mt} flex justify-between items-center`}>
             
-            <Button label={""} styles={"p-0 mx-0 border-none"} children={<StyleLink/>} handleClick={handleStyleLinkClick} />
+            <Button label={""} styles={"p-0 mx-0 border-none"} children={<StyleLink isHome={isHome}/>} handleClick={handleStyleLinkClick} />
             
             <div className="flex space-x-[40px] items-center">
                 <NavigationLink styles={"text-xl"} label={"Styles"} dest="/styles"/>
 
                 {isLoggedIn ? <Button label={"Create a Style"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleCreateAStyleClick} /> : <NavigationLink styles={"text-xl"} label={"Log In"} dest="/login"/> }
         
-                {isLoggedIn ? <AccountBar/>: <Button label={"Become a Creator"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleSignUpClick} />}
+                {isLoggedIn ? <ProfileMenu/>: <Button label={"Become a Creator"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleSignUpClick} />}
             </div>
             
         </div>

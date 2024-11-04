@@ -24,16 +24,6 @@ export default function DropDown() {
 
             <IconButton icon={<LogOutSVG/>} label={"Logout"} styles={""} handleClick={handleLogout}/>
 
-            {/* <ul className={"flex flex-col px-3 text-white my-3 gap-2"}>
-                <li className={"flex items-center space-x-1"}>
-                    <UserSVG/>
-                    <NavigationLink styles={"text-base hover:underline"} label="View Profile" dest="/profile"/>
-                </li>
-                <li className={"flex items-center space-x-1"}>
-                    <LogOutSVG/>
-                    <Button label={"Logout"} styles={"p-0 mx-0 border-none text-base hover:underline flex items-center"} children={""} handleClick={handleLogout} />
-                </li>
-            </ul> */}
         </div>
     );
 }
