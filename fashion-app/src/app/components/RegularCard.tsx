@@ -18,7 +18,7 @@ export default function RegularCard() {
             <div className="flex gap-3 rounded-md shadow-md overflow-hidden bg-white">
                 <Image className="w-3/5 object-cover" src={"/images/PlaceHolderImage.png"} alt="Place Holder Image" width={362} height={506}/> 
                 <div className={`${grotesk.className} p-4`}>
-                    <h2 className="font-bold md:text-lg lg:text-2xl lg:pt-6">Outfit Name</h2>
+                    <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">Outfit Name</h2>
                     <div className="text-gray-500">
                         <p>By Creator</p>
                         <p>Short caption here! ajsfg jalsdkfj as; jfasldkfj a;slfj lksj;s j fjksl ;fjdsl; jfal skdfj;sa</p>
