@@ -27,15 +27,15 @@ export default function Navigation( {isHome, isLoggedIn}:NavigationProps ) {
         alert("Creating a Style not yet implmented. But the button works!")
     }
 
-    const mx = isHome ? "mx-[100px]" : "mx-[20px]";
-    const mt = isHome ? "mt-[40px]" : "mt-[25px]";
+    const mx = isHome ? "mx-24" : "mx-5";
+    const mt = isHome ? "mt-10" : "mt-6";
 
     return(
         <div className={`bg-background ${mx} ${mt} flex justify-between items-center`}>
             
             <Button label={""} styles={"p-0 mx-0 border-none"} children={<StyleLink isHome={isHome}/>} handleClick={handleStyleLinkClick} />
             
-            <div className="flex space-x-[40px] items-center">
+            <div className="flex space-x-10 items-center">
                 <NavigationLink styles={"text-xl"} label={"Styles"} dest="/styles"/>
 
                 {isLoggedIn ? <Button label={"Create a Style"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleCreateAStyleClick} /> : <NavigationLink styles={"text-xl"} label={"Log In"} dest="/login"/> }
