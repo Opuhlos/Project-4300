@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* For Chrome, Safari, and Opera */
+::-webkit-scrollbar {
+    width: 14px; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #FFECBD; /* Set the background color of the scrollbar track */
+    border-radius: 10px;
+  }
+
+::-webkit-scrollbar-thumb {
+    background: #FFBF5F; /* Set the color of the scrollbar thumb */
+    border-color: #FFECBD;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10px; /* Set the border radius of the scrollbar thumb */
+  }

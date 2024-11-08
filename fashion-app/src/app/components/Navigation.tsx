@@ -28,7 +28,7 @@ export default function Navigation( {isHome, isLoggedIn}:NavigationProps ) {
     }
 
     const mx = isHome ? "mx-24" : "mx-5";
-    const mt = isHome ? "my-10" : "my-6";
+    const mt = isHome ? "mt-10" : "mt-5";
 
     return(
         <div className={`bg-background ${mx} ${mt} flex justify-between items-center`}>
