@@ -3,8 +3,20 @@ import { useState } from "react";
 import { useRef } from "react";
 
 import Button from "../Button";
-import PopUpContainer from "./PopUpContainer";
-import ScreenDampen from "./ScreenDampen";
+import { ReactNode } from 'react';
+import RegularCard from "../RegularCard";
+
+interface PopUpContainerProps {
+    children: ReactNode;
+}
+
+function PopUpContainer({children}:PopUpContainerProps) {
+    return(
+        <div className="z-10 fixed inset-0 bg-dark top-0 left-0 w-screen h-screen bg-opacity-80 flex items-center justify-center">
+            {children}
+        </div>
+    );
+}
 
 export default function CreateStyleButton() {
     const [isFormOpen, setFormOpen] = useState(false);
@@ -31,10 +43,7 @@ export default function CreateStyleButton() {
         <div>
             <Button label={"Create a Style"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleCreateAStyleClick} />
 
-            {isFormOpen && <ScreenDampen/>}  
-
-            {isFormOpen && <PopUpContainer ref={areaRef}/>}    
+            {isFormOpen && <PopUpContainer children={<div ref={areaRef}> <RegularCard/> </div>}/>}    
         </div>
-        
     );
 }
