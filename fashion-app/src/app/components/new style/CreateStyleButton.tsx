@@ -4,7 +4,7 @@ import { useRef } from "react";
 
 import Button from "../Button";
 import { ReactNode } from 'react';
-import RegularCard from "../RegularCard";
+import FormCard from "./FormCard";
 
 interface PopUpContainerProps {
     children: ReactNode;
@@ -43,7 +43,7 @@ export default function CreateStyleButton() {
         <div>
             <Button label={"Create a Style"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleCreateAStyleClick} />
 
-            {isFormOpen && <PopUpContainer children={<div ref={areaRef}> <RegularCard/> </div>}/>}    
+            {isFormOpen && <PopUpContainer children={<div ref={areaRef}> <FormCard/> </div>}/>}    
         </div>
     );
 }

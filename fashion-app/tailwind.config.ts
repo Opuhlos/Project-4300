@@ -16,7 +16,8 @@ const config: Config = {
         dark: "#191A23",
         darkLighten: "#362a26",
         ourgrey: "#f3f3f3",
-        taggrey: "#3C3C43"
+        taggrey: "#3C3C43",
+        cardGrey: "#CBCED5"
       }
     }
   },
