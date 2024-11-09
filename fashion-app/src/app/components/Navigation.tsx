@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import StyleLink from './StyleLink';
 import NavigationLink from './NavigationLink';
 import Button from './Button';
+import CreateStyleButton from './new style/CreateStyleButton';
 import ProfileMenu from './ProfileMenu';
 
 interface NavigationProps {
@@ -23,10 +24,6 @@ export default function Navigation( {isHome, isLoggedIn}:NavigationProps ) {
         router.push('/');
     };
 
-    const handleCreateAStyleClick = () => {
-        alert("Creating a Style not yet implmented. But the button works!")
-    }
-
     const mx = isHome ? "mx-24" : "mx-5";
     const mt = isHome ? "mt-10" : "mt-5";
 
@@ -38,7 +35,7 @@ export default function Navigation( {isHome, isLoggedIn}:NavigationProps ) {
             <div className="flex space-x-10 items-center">
                 <NavigationLink styles={"text-xl"} label={"Styles"} dest="/styles"/>
 
-                {isLoggedIn ? <Button label={"Create a Style"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleCreateAStyleClick} /> : <NavigationLink styles={"text-xl"} label={"Log In"} dest="/login"/> }
+                {isLoggedIn ? <CreateStyleButton/> : <NavigationLink styles={"text-xl"} label={"Log In"} dest="/login"/> }
         
                 {isLoggedIn ? <ProfileMenu/>: <Button label={"Become a Creator"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleSignUpClick} />}
             </div>

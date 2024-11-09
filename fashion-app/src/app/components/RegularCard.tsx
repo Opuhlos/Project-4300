@@ -14,7 +14,8 @@ interface ProfileProps {
 
 export default function RegularCard() {
     return(
-        <div className="grid grid-cols-1 justify-items-center md:mt-20">
+        // removed md:mt-20 from the topmost div's styles
+        <div className="grid grid-cols-1 justify-items-center ">
             <div className="flex gap-3 rounded-md shadow-md overflow-hidden bg-white">
                 <Image className="w-3/5 object-cover" src={"/images/PlaceHolderImage.png"} alt="Place Holder Image" width={362} height={506}/> 
                 <div className={`${grotesk.className} p-4`}>
