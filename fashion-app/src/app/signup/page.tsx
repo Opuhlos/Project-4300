@@ -8,7 +8,7 @@ import StyleLink from '../components/StyleLink';
 export default function Home() {
     return (
       <form>
-      <div className = "flex justify-center items-center min-h-screen bg-gray-100">
+      <div className = "flex justify-center items-center min-h-screen">
       <div className = "bg-astra rounded-3xl shadow-lg flex flex-row justify-center items-center w-1/2.5 border border-b-8 border-black ">
         <div className = {"flex flex-col items-center p-10"}>
         <StyleLink />

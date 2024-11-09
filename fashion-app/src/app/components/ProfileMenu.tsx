@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation'
 
 import ProfileIcon from "./ProfileIcon";
-import AccountDropDown from "./AccountDropDown";
+import ProfileMenuDropDown from "./ProfileMenuDropDown";
 import Button from "./Button";
 
 export default function AccountBar() {
@@ -18,7 +18,7 @@ export default function AccountBar() {
         <div className={"flex items-center space-x-2"}>
             <Button label={""} styles={"p-0 mx-0 border-none"} children={ <ProfileIcon image="/images/Naruto.jpg" alt="Profile Picture" height="70px" width="70px"/> } handleClick={handleProfileClick}/>
 
-            <AccountDropDown/> 
+            <ProfileMenuDropDown/> 
         </div>
     );
 }

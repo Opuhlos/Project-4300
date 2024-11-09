@@ -4,13 +4,13 @@ import { useRef } from "react";
 
 import Button from "./Button";
 import ArrowDropDownSVG from "./svg/ArrowDropDownSVG";
-import DropDown from "./DropDown";
+import ProfileDropDownDisplay from "./ProfileDropDownDisplay";
 
 export default function AccountDropDown() {
-    const [isAccountDropDownOpen, setAccountDropDownOpen] = useState(false);
+    const [isProfileDropDownOpen, setProfileDropDownOpen] = useState(false);
 
     const handleAccountDropDownClick = () => {
-        setAccountDropDownOpen(isAccountDropDownOpen => !isAccountDropDownOpen)
+        setProfileDropDownOpen(isProfileDropDownOpen => !isProfileDropDownOpen)
     }
 
     const areaRef = useRef<HTMLDivElement>(null);
@@ -20,7 +20,7 @@ export default function AccountDropDown() {
         // Handler to close the drop down if clicked outside
         const handler = (event: MouseEvent) => {
             if(areaRef.current && !areaRef.current.contains(event.target as Node)){
-                setAccountDropDownOpen(false);
+                setProfileDropDownOpen(false);
             }
         }
 
@@ -29,9 +29,9 @@ export default function AccountDropDown() {
 
     return (
         <div className="relative inline-block" ref={areaRef}>
-            <Button label={""} styles={`p-0 mx-0 rounded-full border-none hover:bg-orange ${isAccountDropDownOpen ? `bg-orange` : `bg-background`} `} children={<ArrowDropDownSVG/>} handleClick={ handleAccountDropDownClick }/>
+            <Button label={""} styles={`p-0 mx-0 rounded-full border-none hover:bg-orange ${isProfileDropDownOpen ? `bg-orange` : `bg-background`} `} children={<ArrowDropDownSVG/>} handleClick={ handleAccountDropDownClick }/>
 
-            {isAccountDropDownOpen && <DropDown/>}
+            {isProfileDropDownOpen && <ProfileDropDownDisplay/>}
         </div>
     );
 }
