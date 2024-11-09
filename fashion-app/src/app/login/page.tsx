@@ -8,28 +8,16 @@ export default function Home() {
     return (
       <form>
       <div className = "flex justify-center items-center min-h-screen bg-gray-100">
-      <div className = "bg-astra rounded-3xl shadow-lg flex flex-row justify-center items-center w-1/3 border border-b-8 border-black ">
-        <div className = "bg-astra rounded-3xl flex-col">
-        <div className = "my-5 mx-10 mt-10">
-          <label className = {`${grotesk.className} font-medium text-3xl` }>Login</label>
-          <br></br>
+      <div className = "bg-astra rounded-3xl shadow-lg flex flex-row justify-center items-center w-1/2.5 border border-b-8 border-black ">
+        <div className = {"flex flex-col items-center p-10"}>
+        <StyleLink />
+        <div className={"h-[229px] w-[252px] bg-black border border-hidden overflow-hidden my-10"}>
+             <Image src={"/images/ExtraGroup.png"} alt="Dressing" width={252} height={229}/>
         </div>
-        <div className = "my-5 mx-10">
-          <label className = {`${grotesk.className} font-medium text-lg`}>Username</label>
-          <br></br>
-          <input className = "rounded-md p-1.5 text-sm" type="text" id="name" name="name" required minlength="6" maxlength="20" size="35" 
-          placeholder = "E.g. joeacme1"
-          />
-        </div>
-        <div className = "my-5 mx-10">
-          <label className = {`${grotesk.className} font-medium text-lg`}>Password</label>
-          <br></br>
-          <input className = "rounded-md p-1.5 text-sm" type="text" id="name" name="name" required minlength="6" maxlength="20" size="35" />
-        </div>
-        <div className = "my-5 mx-10 mb-10">
-          <Button label = {"Create Account"} styles = {"mx-10 bg-dark text-sm text-white px-8 py-4 "} children = {""} handleClick = {""}/>
-          <br></br>
-        </div>
+        <button className="px-4 py-2 border flex gap-2 border-dark  rounded-lg text-slate-700 dark:text-slate-200 bg-dark dark:hover:bg-gray-700 hover:text-white transition duration-150">
+        <Image className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy"  width={24} height={24} alt="google logo"></Image>
+        <span>Login with Google</span>
+        </button>
         </div>
       </div>
       </div>
