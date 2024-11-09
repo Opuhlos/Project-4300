@@ -22,7 +22,7 @@ export default function RegularCard() {
                 
                 <div className="bg-orange w-[362px] flex flex-col gap-y-1 items-center justify-center">
                     <UploadIcon/>
-                    <h2 className="font-semibold text-lg">Upload an image</h2>
+                    <h2 className="text-lg">Upload an image</h2>
                 </div>
 
                 {/* <Image className="w-3/5 object-cover" src={"/images/PlaceHolderImage.png"} alt="Place Holder Image" width={362} height={506}/>  */}

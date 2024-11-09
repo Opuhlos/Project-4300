@@ -43,7 +43,10 @@ export default function CreateStyleButton() {
         <div>
             <Button label={"Create a Style"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleCreateAStyleClick} />
 
-            {isFormOpen && <PopUpContainer children={<div ref={areaRef}> <FormCard/> </div>}/>}    
+            {isFormOpen && 
+            <PopUpContainer 
+                children={<div className="flex flex-col gap-y-3 items-center" ref={areaRef}> <FormCard/> <Button label={"Create"} styles={"bg-orange text-xl w-1/4 px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={ () =>  alert("Not yet implemented")} /> </div>} 
+            />}    
         </div>
     );
 }
