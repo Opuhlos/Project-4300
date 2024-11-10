@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Button from "../Button";
 import { grotesk } from "../Fonts";
-import Tags from "../Tags";
-import Items from "../Items"
 import UploadIcon from "../svg/UploadIconSVG";
 
 import { useState, ChangeEvent, FormEvent } from 'react';
@@ -74,7 +72,7 @@ export default function FormCard( {onSaveStyleData}:StyleFormProps ) {
                         />
                     </div>
 
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 lg:pb-6">
                         <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">Description</h2>
 
                         <textarea className="w-11/12 h-40 p-2 pl-4 border-2 resize-none border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
@@ -84,15 +82,6 @@ export default function FormCard( {onSaveStyleData}:StyleFormProps ) {
                             onChange={handleDescriptionChange}
                             required
                         />
-                    </div>
-
-                        <hr className="border-cardGrey m-0 mt-4 mb-4"/>
-
-                    <div>
-                        <Tags />
-                    </div>
-                    <div>
-                        {/* <Items /> */}
                     </div>
 
                 </div>

@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Button from "./Button";
 import { grotesk } from './Fonts';
-import Tags from "./Tags";
-import Items from "./Items"
 // import User from "./User" or something similar
 
 interface ProfileProps {
@@ -25,12 +23,7 @@ export default function RegularCard() {
                         <p>Short caption here! ajsfg jalsdkfj as; jfasldkfj a;slfj lksj;s j fjksl ;fjdsl; jfal skdfj;sa</p>
                         <hr className="m-0 mt-4 mb-4"/>
                     </div>
-                    <div>
-                        <Tags />
-                    </div>
-                    <div>
-                        <Items />
-                    </div>
+
                 </div>    
             </div>
         </div>
