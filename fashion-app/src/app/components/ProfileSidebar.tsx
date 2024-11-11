@@ -5,6 +5,7 @@ import React from "react";
 import { grotesk } from './Fonts';
 import HangerSVG from "./svg/HangerSVG";
 import LogOutSVG from "./svg/LogOutSVG";
+import ProfileIcon from "./ProfileIcon";
 import IconButton from "./IconButton";
 
 
@@ -24,7 +25,7 @@ export default function ProfileSidebar({ image, alt, username, stylesCount }:Pro
   }
 
   return (
-    <aside
+    <aside className="px-5"
 
       style={{
         width: "300px",        
@@ -33,28 +34,14 @@ export default function ProfileSidebar({ image, alt, username, stylesCount }:Pro
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
-        padding: "20px",
-        // position: "relative",
-        // height: "100vh",
-        // boxSizing: "border-box",
+ 
       }}
     >
       {/* Profile Picture */}
-      <img
-        src={image}
-        alt={alt}
-        style={{
-          width: "250px",
-          height: "250px",
-          borderRadius: "50%",
-          marginBottom: "20px",
-        }}
-      />
-
+      <ProfileIcon image="/images/Naruto.jpg" alt="Profile Picture" height="250px" width="250px"/>
+      <br></br>
       {/* Username */}
-      <h2 className={`text-4xl ${grotesk.className}`} style={{textAlign: "right" }}>
-        {username}
-      </h2>
+      <h2 className={`text-4xl text-right ${grotesk.className}`}> {username} </h2>
 
       {/* Styles Count */}
         <p
@@ -67,13 +54,8 @@ export default function ProfileSidebar({ image, alt, username, stylesCount }:Pro
         </p>
 
       {/* Logout Button */}
-      <IconButton icon={<LogOutSVG/>} label={"Logout"} styles={"pl-3 bg-dark w-full justify-center flex items-center space-x-2 py-1"} styles2={"hover:underline text-white text-base"} handleClick={handleLogout}/>
+      <IconButton icon={<LogOutSVG/>} label={"Logout"} styles={"pl-3 bg-dark w-full px-5 py-3 rounded-lg mt-auto hover:bg-darkLighten justify-center flex items-center space-x-2"} styles2={"hover:underline text-white text-base"} handleClick={handleLogout}/>
 
-      <button
-        className="flex items-center justify-center px-5 py-3 bg-black text-white rounded-lg w-full mt-auto cursor-pointer hover:bg-gray-800 hover:text-white"
-        >
-        <LogOutSVG />  Logout
-      </button>
     </aside>
   );
 };
