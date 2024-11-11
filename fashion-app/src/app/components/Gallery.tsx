@@ -54,7 +54,7 @@ export default function Gallery() {
     //   }, [gapSize]); // This will run when `gapStyle` is updated
 
     const gridStyle = {
-        gap: `${gapSize}px`, // Dynamically set the gap
+        columnGap: `${gapSize}px`, // Dynamically set the gap
     };
 
     return(
