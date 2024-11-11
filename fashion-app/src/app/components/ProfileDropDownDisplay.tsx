@@ -4,13 +4,16 @@ import { useRouter } from 'next/navigation'
 import LogOutSVG from "./svg/LogOutSVG";
 import UserSVG from "./svg/UserSVG";
 import IconButton from "./IconButton";
+import { signOut } from "next-auth/react"
 
 export default function DropDown() {
     const router = useRouter();
 
     const handleLogout = () => {
-        router.push('/')
-        alert("Logging out it not yet implemented. But the button and redirection works!")
+        signOut({ redirectTo: "/" })
+        //signOut()
+        //router.push('/')
+        //alert("Logging out it not yet implemented. But the button and redirection works!")
     }
 
     const handleViewprofile = () => {
