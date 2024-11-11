@@ -2,6 +2,8 @@ import Image from "next/image";
 import Button from "./Button";
 import { grotesk } from './Fonts';
 import IconButton from "./IconButton";
+import EditSVG from "./svg/EditSVG";
+import DeleteSVG from "./svg/DeleteSVG";
 // import User from "./User" or something similar
 
 interface ProfileProps {
@@ -11,7 +13,19 @@ interface ProfileProps {
     width: string;
 }
 
-export default function RegularCard() {
+interface RegularCardProps {
+    isProfilePage: boolean; 
+}
+
+const handleEditClick = () => {
+    console.log("Edit button clicked");
+};
+
+const handleDeleteClick = () => {
+    console.log("Delete button clicked");
+};
+
+export default function RegularCard({ isProfilePage }: RegularCardProps) {
     return(
         // Temp grid for testing
         <div className="grid grid-cols-1 justify-items-center">
@@ -20,9 +34,20 @@ export default function RegularCard() {
                     <img className="h-full w-full object-cover" src={"/images/PlaceHolderImage.png"} alt="Place Holder Image" /> 
                 </div>
                 <div className={`${grotesk.className} p-4 max-w-[362px]`}>
-                    <div className="flex space-x-36 lg:space-x-32">
+                    <div className="flex justify-between items-center">
                         <h2 className="font-bold md:text-lg lg:text-xl">Outfit Name</h2>
-                        <p className="text-gray-500">By Creator</p>
+                        {isProfilePage ? (
+                            <div className="flex space-x-2 justify-end">
+                            <Button label="" styles="border-none" handleClick={handleEditClick}>
+                                <EditSVG />
+                            </Button>
+                            <Button label="" styles="border-none" handleClick={handleDeleteClick}>
+                                <DeleteSVG />
+                            </Button>
+                        </div>
+                        ) : (
+                            <p className="text-gray-500">By Creator</p>
+                        )}
                     </div>
 
                     <hr className="border-cardGrey m-0 mt-2 mb-2"/>
