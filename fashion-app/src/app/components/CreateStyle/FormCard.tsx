@@ -19,6 +19,7 @@ interface StyleFormProps {
 export default function FormCard( {onSaveStyleData}:StyleFormProps ) {
     const [enteredTitle, setTitle] = useState<string>('');
     const [enteredDescription, setDescription] = useState<string>('');
+    const [enteredLink, setLink] = useState<string>('');
 
     const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
@@ -26,6 +27,10 @@ export default function FormCard( {onSaveStyleData}:StyleFormProps ) {
 
     const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setDescription(event.target.value);
+    };
+
+    const handleLinkChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setLink(event.target.value);
     };
 
     const submitHandler = (event: FormEvent) => {
@@ -43,6 +48,7 @@ export default function FormCard( {onSaveStyleData}:StyleFormProps ) {
         onSaveStyleData(styleData)
         // Clear the form inputs after capturing the data entered
         setTitle('');
+        setLink('');
         setDescription('');
     };
 
@@ -68,6 +74,19 @@ export default function FormCard( {onSaveStyleData}:StyleFormProps ) {
                             placeholder="Name your outfit"
                             value={enteredTitle}
                             onChange={handleTitleChange}
+                            required
+                        />
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                        <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">Image Link</h2>
+
+                        <input className="w-11/12 p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+                            id="outfitImage"
+                            type="text"
+                            placeholder="Enter an image link"
+                            value={enteredLink}
+                            onChange={handleLinkChange}
                             required
                         />
                     </div>
