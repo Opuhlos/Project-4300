@@ -32,7 +32,7 @@ export default function SplashInfo() {
 
             <div className={"flex-1 place-items-center mt-10"}>
                 <Image className={"object-cover"} src={"/images/splash.png"} alt={"An assortment of stylized illustrations of clothing items"} width={600} height={600}/>
-                <Button label={"Find your style"} styles={"lg:visibility:hidden; text-xl px-3 py-5 bg-dark text-white hover:bg-darkerOrange w-56"} children={""} handleClick={handleFindYourStyleClick} />
+                {/* <Button label={"Find your style"} styles={"lg:visibility:hidden; text-xl px-3 py-5 bg-dark text-white hover:bg-darkerOrange w-56"} children={""} handleClick={handleFindYourStyleClick} /> */}
             </div>
 
         </div>
