@@ -39,7 +39,7 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
                 <div className={`${grotesk.className} p-4 max-w-[362px]`}>
                     <div className="flex justify-between">
                         <h2 className="font-bold md:text-lg lg:text-xl">{item.title}</h2>
-                        <p className="text-gray-500">By {item.creator}</p>
+                        
                         {isProfilePage ? (
                             <div className="flex space-x-2 justify-end">
                             <Button label="" styles="border-none" handleClick={handleEditClick}>
@@ -50,7 +50,7 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
                             </Button>
                         </div>
                         ) : (
-                            <p className="text-gray-500">By Creator</p>
+                            <p className="text-gray-500">By {item.creator}</p>
                         )}
                     </div>
 
