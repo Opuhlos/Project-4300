@@ -48,7 +48,7 @@ export default function Home() {
         <PageHeader header="Styles"/>
 
         <div className="overflow-y-auto mx-5 ">
-          <Gallery itemArray={itemArray}/>
+          <Gallery isProfilePage={false} itemArray={itemArray}/>
         </div>
 
         {/* Bottom margin */}

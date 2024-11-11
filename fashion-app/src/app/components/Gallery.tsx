@@ -7,9 +7,10 @@ import { Item } from '../styles/page';
 
 interface GalleryProps {
     itemArray: Item[];
-  }
+    isProfilePage: boolean; 
+}
 
-export default function Gallery({itemArray}:GalleryProps) {
+export default function Gallery({ isProfilePage, itemArray }: GalleryProps) {
     const galleryCardWidth = 359.3
     const galleryRef = useRef<HTMLDivElement>(null); 
     const [width, setWidth] = useState(0);
@@ -69,10 +70,11 @@ export default function Gallery({itemArray}:GalleryProps) {
         <div ref={galleryRef} style={gridStyle} className={`gap-y-5 pr-[8px] flex-1 -auto grid grid-cols-[repeat(auto-fit,_359.3px)] `}>
             {
                 itemArray.map( item => (
-                    <GalleryCard item={item} key={item.id}></GalleryCard>
+                    <GalleryCard isProfilePage={isProfilePage} item={item} key={item.id}></GalleryCard>
                 ))
             }
             
+
         </div>
 
     );

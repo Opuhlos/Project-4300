@@ -3,6 +3,8 @@ import Button from "./Button";
 import { grotesk } from './Fonts';
 import IconButton from "./IconButton";
 import { Item } from "../styles/page";
+import EditSVG from "./svg/EditSVG";
+import DeleteSVG from "./svg/DeleteSVG";
 // import User from "./User" or something similar
 
 interface ProfileProps {
@@ -12,11 +14,21 @@ interface ProfileProps {
     width: string;
 }
 
-interface ItemProp {
-    item: Item;
-  }
 
-export default function RegularCard({item}:ItemProp) {
+interface RegularCardProps {
+    item: Item;
+    isProfilePage: boolean; 
+}
+
+const handleEditClick = () => {
+    console.log("Edit button clicked");
+};
+
+const handleDeleteClick = () => {
+    console.log("Delete button clicked");
+};
+
+export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
     return(
         // Temp grid for testing
         <div className="grid grid-cols-1 justify-items-center max-w-[359.3px]">
@@ -28,6 +40,18 @@ export default function RegularCard({item}:ItemProp) {
                     <div className="flex justify-between">
                         <h2 className="font-bold md:text-lg lg:text-xl">{item.title}</h2>
                         <p className="text-gray-500">By {item.creator}</p>
+                        {isProfilePage ? (
+                            <div className="flex space-x-2 justify-end">
+                            <Button label="" styles="border-none" handleClick={handleEditClick}>
+                                <EditSVG />
+                            </Button>
+                            <Button label="" styles="border-none" handleClick={handleDeleteClick}>
+                                <DeleteSVG />
+                            </Button>
+                        </div>
+                        ) : (
+                            <p className="text-gray-500">By Creator</p>
+                        )}
                     </div>
 
                     <hr className="border-cardGrey m-0 mt-2 mb-2"/>

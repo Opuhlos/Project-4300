@@ -49,7 +49,7 @@ export default function Home() {
 
           {/* Gallery on the right */}
           <div className="flex-1 overflow-y-auto">
-            <Gallery itemArray={itemArray}/>
+            <Gallery isProfilePage={true} itemArray={itemArray}/>
           </div>
 
         </div>
