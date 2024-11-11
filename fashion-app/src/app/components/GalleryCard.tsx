@@ -17,6 +17,14 @@ interface RegularCardProps {
     isProfilePage: boolean; 
 }
 
+const handleEditClick = () => {
+    console.log("Edit button clicked");
+};
+
+const handleDeleteClick = () => {
+    console.log("Delete button clicked");
+};
+
 export default function RegularCard({ isProfilePage }: RegularCardProps) {
     return(
         // Temp grid for testing
@@ -30,12 +38,12 @@ export default function RegularCard({ isProfilePage }: RegularCardProps) {
                         <h2 className="font-bold md:text-lg lg:text-xl">Outfit Name</h2>
                         {isProfilePage ? (
                             <div className="flex space-x-2 justify-end">
-                            <button>
+                            <Button label="" styles="border-none" handleClick={handleEditClick}>
                                 <EditSVG />
-                            </button>
-                            <button>
+                            </Button>
+                            <Button label="" styles="border-none" handleClick={handleDeleteClick}>
                                 <DeleteSVG />
-                            </button>
+                            </Button>
                         </div>
                         ) : (
                             <p className="text-gray-500">By Creator</p>

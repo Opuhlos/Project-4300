@@ -17,7 +17,7 @@ export default function Home() {
 
           {/* Gallery on the right */}
           <div className="flex-1 overflow-y-auto">
-            <Gallery/>
+            <Gallery isProfilePage={true}/>
           </div>
 
         </div>
