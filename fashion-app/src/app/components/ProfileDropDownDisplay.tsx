@@ -9,7 +9,8 @@ export default function DropDown() {
     const router = useRouter();
 
     const handleLogout = () => {
-        alert("Logging out it not yet implemented. But the button works!")
+        router.push('/')
+        alert("Logging out it not yet implemented. But the button and redirection works!")
     }
 
     const handleViewprofile = () => {

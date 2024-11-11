@@ -1,7 +1,12 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import React from "react";
 import { grotesk } from './Fonts';
 import HangerSVG from "./svg/HangerSVG";
 import LogOutSVG from "./svg/LogOutSVG";
+import IconButton from "./IconButton";
+
 
 interface ProfileSidebarProps {
   image: string;
@@ -11,8 +16,16 @@ interface ProfileSidebarProps {
 }
 
 export default function ProfileSidebar({ image, alt, username, stylesCount }:ProfileSidebarProps) {
+  const router = useRouter();
+
+  const handleLogout = () => {
+      router.push('/')
+      alert("Logging out it not yet implemented. But the button and redirection works!")
+  }
+
   return (
     <aside
+
       style={{
         width: "300px",        
         minWidth: "300px",      
@@ -21,9 +34,9 @@ export default function ProfileSidebar({ image, alt, username, stylesCount }:Pro
         flexDirection: "column",
         alignItems: "flex-start",
         padding: "20px",
-        position: "relative",
-        height: "100vh",
-        boxSizing: "border-box",
+        // position: "relative",
+        // height: "100vh",
+        // boxSizing: "border-box",
       }}
     >
       {/* Profile Picture */}
@@ -54,6 +67,8 @@ export default function ProfileSidebar({ image, alt, username, stylesCount }:Pro
         </p>
 
       {/* Logout Button */}
+      <IconButton icon={<LogOutSVG/>} label={"Logout"} styles={"pl-3 bg-dark w-full justify-center flex items-center space-x-2 py-1"} styles2={"hover:underline text-white text-base"} handleClick={handleLogout}/>
+
       <button
         className="flex items-center justify-center px-5 py-3 bg-black text-white rounded-lg w-full mt-auto cursor-pointer hover:bg-gray-800 hover:text-white"
         >
