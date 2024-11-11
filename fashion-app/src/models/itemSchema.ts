@@ -1,6 +1,6 @@
 import mongoose, {Schema, Document, Model} from "mongoose"
 
-interface IItem extends Document {
+export interface IItem extends Document {
     title: string;
     description?: string;
     image?: string;
@@ -17,10 +17,7 @@ const itemSchema = new Schema<IItem>({
     },
     image: {
         type: String,
-    },
-    updated_date: {
-        type: Date,
-        default: Date.now,
+        required: true,
     }
 });
 const Item: Model<IItem> = mongoose.models.Item || mongoose.model<IItem>("Item", itemSchema);

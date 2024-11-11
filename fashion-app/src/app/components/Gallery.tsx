@@ -3,12 +3,14 @@
 import { useEffect, useRef, useState } from 'react';
 
 import GalleryCard from "./GalleryCard";
+import { Item } from '../styles/page';
 
 interface GalleryProps {
+    itemArray: Item[];
     isProfilePage: boolean; 
 }
 
-export default function Gallery({ isProfilePage }: GalleryProps) {
+export default function Gallery({ isProfilePage, itemArray }: GalleryProps) {
     const galleryCardWidth = 359.3
     const galleryRef = useRef<HTMLDivElement>(null); 
     const [width, setWidth] = useState(0);
@@ -66,15 +68,13 @@ export default function Gallery({ isProfilePage }: GalleryProps) {
         // The specific pr specification is necessary for the auto gap calculation to work! Moreover, that same number must be supplied
         // in the calculation
         <div ref={galleryRef} style={gridStyle} className={`gap-y-5 pr-[8px] flex-1 -auto grid grid-cols-[repeat(auto-fit,_359.3px)] `}>
-            <GalleryCard isProfilePage={isProfilePage} />
-            <GalleryCard isProfilePage={isProfilePage} />
-            <GalleryCard isProfilePage={isProfilePage} />
-            <GalleryCard isProfilePage={isProfilePage} />
-            <GalleryCard isProfilePage={isProfilePage} />
-            <GalleryCard isProfilePage={isProfilePage} />
-            <GalleryCard isProfilePage={isProfilePage} />
-            <GalleryCard isProfilePage={isProfilePage} />
-            <GalleryCard isProfilePage={isProfilePage} />
+            {
+                itemArray.map( item => (
+                    <GalleryCard isProfilePage={isProfilePage} item={item} key={item.id}></GalleryCard>
+                ))
+            }
+            
+
         </div>
 
     );
