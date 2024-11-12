@@ -53,16 +53,8 @@ export default function FormCard( {onSaveStyleData}:StyleFormProps ) {
     };
 
     return(
-        <div className="flex flex-col gap-y-3 items-center">
-            <form onSubmit={submitHandler} className={`${grotesk.className} flex gap-3 rounded-md shadow-md overflow-hidden bg-white`}>
-                
-                <div className="bg-orange w-[362px] flex flex-col gap-y-1 items-center justify-center">
-                    <UploadIcon/>
-                    <h2 className="text-lg">Upload an image</h2>
-                </div>
-
-                {/* <Image className="w-3/5 object-cover" src={"/images/PlaceHolderImage.png"} alt="Place Holder Image" width={362} height={506}/>  */}
-                
+        <div className="flex flex-col gap-y-3 w-full">
+            <form onSubmit={submitHandler} className={`${grotesk.className} flex gap-3 rounded-md shadow-md overflow-hidden bg-white`}>                
                 <div className="p-4">
 
                     <div className="flex flex-col gap-2">
@@ -106,7 +98,7 @@ export default function FormCard( {onSaveStyleData}:StyleFormProps ) {
                 </div>
             </form>
 
-            <Button label={"Create"} styles={"bg-orange text-xl w-1/4 px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={submitHandler} />
+            <Button label={"Create"} styles={"m-auto bg-orange text-xl w-2/4 px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={submitHandler} />
         </div>
 
     );

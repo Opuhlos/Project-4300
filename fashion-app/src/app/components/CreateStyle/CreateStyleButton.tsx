@@ -45,7 +45,7 @@ export default function CreateStyleButton() {
 
             {isFormOpen && 
             <PopUpContainer 
-                children={<div ref={areaRef}> <FormCard onSaveStyleData={() => alert("Success")}/> </div>} 
+                children={<div className="" ref={areaRef}> <FormCard onSaveStyleData={() => alert("Success")}/> </div>} 
             />}    
         </div>
     );
