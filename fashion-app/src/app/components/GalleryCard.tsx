@@ -2,10 +2,9 @@ import Image from "next/image";
 import Button from "./Button";
 import { grotesk } from './Fonts';
 import IconButton from "./IconButton";
-import { Item } from "../styles/page";
 import EditSVG from "./svg/EditSVG";
 import DeleteSVG from "./svg/DeleteSVG";
-// import User from "./User" or something similar
+import { IItem } from '@/models/itemSchema';
 
 interface ProfileProps {
     image: string;
@@ -16,7 +15,7 @@ interface ProfileProps {
 
 
 interface RegularCardProps {
-    item: Item;
+    item: IItem;
     isProfilePage: boolean; 
 }
 

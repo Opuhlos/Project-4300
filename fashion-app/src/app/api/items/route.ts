@@ -12,7 +12,13 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET() {
-    await connectMongoDB();
-    const items = await Item.find();
-    return NextResponse.json({ items });
+    try {
+        await connectMongoDB();
+        const items = await Item.find();
+        console.log(items);
+        return NextResponse.json({ items }, { status: 200})
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({ message: "Error", error }, { status: 500 })
+    }
 }
