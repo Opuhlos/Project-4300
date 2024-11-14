@@ -1,22 +1,16 @@
 import Image from "next/image";
 import Button from "../Button";
 import { grotesk } from "../Fonts";
+import { IItemData } from "@/models/itemSchema";
 import UploadIcon from "../svg/UploadIconSVG";
 
 import { useState, ChangeEvent, FormEvent } from 'react';
 
-interface StyleData {
-    id: number;
-    title: string;
-    description: string;
-    // image blob
-}
-
-interface StyleFormProps {
-    onSaveStyleData: (enteredStyleData: StyleData) => void;
+interface ItemFormProps {
+    onSaveItemData: (enteredItemData: IItemData) => void;
   }
 
-export default function FormCard( {onSaveStyleData}:StyleFormProps ) {
+export default function FormCard( {onSaveItemData}:ItemFormProps ) {
     const [enteredTitle, setTitle] = useState<string>('');
     const [enteredDescription, setDescription] = useState<string>('');
     const [enteredLink, setLink] = useState<string>('');
@@ -36,16 +30,13 @@ export default function FormCard( {onSaveStyleData}:StyleFormProps ) {
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
     
-        const styleData = {
-            // id thing is temporary
-            id: Math.floor(Math.random() *1000) ,
+        const itemData = {
             title: enteredTitle,
             description: enteredDescription,
-        };
-    
-        console.log(styleData);
-    
-        onSaveStyleData(styleData)
+            image: enteredLink,
+            creator: "N/A",
+        }; 
+        onSaveItemData(itemData)
         // Clear the form inputs after capturing the data entered
         setTitle('');
         setLink('');
@@ -88,7 +79,7 @@ export default function FormCard( {onSaveStyleData}:StyleFormProps ) {
 
                         <textarea className="w-11/12 h-40 p-2 pl-4 border-2 resize-none border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
                             id="description"
-                            placeholder="Write about your style"
+                            placeholder="Write about your item"
                             value={enteredDescription}
                             onChange={handleDescriptionChange}
                             required

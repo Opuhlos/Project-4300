@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
-
+import { IItemData } from "@/models/itemSchema";
 import Button from "../Button";
 import { ReactNode } from 'react';
 import FormCard from "./FormCard";
@@ -38,14 +38,35 @@ export default function CreateStyleButton() {
 
         document.addEventListener("mousedown", handler)
     });
-
+    
+    // Handler for posting items
+    const OnSubmit = async (newItem:IItemData) => {
+        try {
+            const response = await fetch('/api/items', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newItem),
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            console.log("post okay!")
+            // router.push('/');
+        } catch (error) {
+            console.log(newItem)
+            console.error('Error in CreateItem!', error);
+        }
+    };
+    
     return(
         <div>
             <Button label={"Create a Style"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleCreateAStyleClick} />
 
             {isFormOpen && 
             <PopUpContainer 
-                children={<div className="" ref={areaRef}> <FormCard onSaveStyleData={() => alert("Success")}/> </div>} 
+                children={<div className="" ref={areaRef}> <FormCard onSaveItemData={OnSubmit}/> </div>} 
             />}    
         </div>
     );

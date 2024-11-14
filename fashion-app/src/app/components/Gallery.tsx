@@ -70,7 +70,7 @@ export default function Gallery({ isProfilePage, items }: GalleryProps) {
         <div ref={galleryRef} style={gridStyle} className={`gap-y-5 pr-[8px] flex-1 -auto grid grid-cols-[repeat(auto-fit,_359.3px)] `}>
             {
                 items.items.map( item => (
-                    <GalleryCard isProfilePage={isProfilePage} item={item} key={item._id}></GalleryCard>
+                    <GalleryCard isProfilePage={isProfilePage} item={item} key={item._id.toString()}></GalleryCard>
                 ))
             }
             

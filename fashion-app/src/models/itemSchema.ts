@@ -1,13 +1,16 @@
 import mongoose, {Schema, Document, Model} from "mongoose"
 import { ObjectId } from "mongodb";
 
-export interface IItem extends Document {
-    _id: ObjectId;
+// this is for posting, since we aren't posting and providing an id, mongo provides that for us
+export interface IItemData {
     title: string;
-    description?: string;
-    image?: string;
+    description: string;
+    image: string;
     creator: string;
 }
+
+// this is for getting, the document ensures that we get the _id
+export interface IItem extends IItemData, Document {}
 
 const itemSchema = new Schema<IItem>(
     {
@@ -17,6 +20,7 @@ const itemSchema = new Schema<IItem>(
         },
         description: {
             type: String,
+            required: true,
         },
         image: {
             type: String,
