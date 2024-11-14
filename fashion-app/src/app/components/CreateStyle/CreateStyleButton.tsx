@@ -5,6 +5,7 @@ import { IItemData } from "@/models/itemSchema";
 import Button from "../Button";
 import { ReactNode } from 'react';
 import FormCard from "./FormCard";
+import { useRouter } from "next/navigation";
 
 interface PopUpContainerProps {
     children: ReactNode;
@@ -40,6 +41,8 @@ export default function CreateStyleButton() {
     });
     
     // Handler for posting items
+    const router = useRouter();
+
     const OnSubmit = async (newItem:IItemData) => {
         try {
             const response = await fetch('/api/items', {
@@ -52,8 +55,7 @@ export default function CreateStyleButton() {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            console.log("post okay!")
-            // router.push('/');
+            router.refresh();
         } catch (error) {
             console.log(newItem)
             console.error('Error in CreateItem!', error);
