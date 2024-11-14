@@ -14,7 +14,7 @@ export default function PageHeader ({header}:PageHeaderProps)  {
       <div className="flex items-center space-x-4">
         <h1 className={`text-4xl font-medium ${grotesk.className}`}>{header}</h1>
       </div>
-      <SearchBar/>
+      {/* <SearchBar/> */}
     </header>
   );
 };
