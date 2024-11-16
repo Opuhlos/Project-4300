@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from 'react';
 
 import GalleryCard from "./GalleryCard";
-import { Item } from '../styles/page';
+import { IItem } from '@/models/itemSchema';
 
 interface GalleryProps {
-    itemArray: Item[];
+    items: {items: IItem[]};
     isProfilePage: boolean; 
 }
 
-export default function Gallery({ isProfilePage, itemArray }: GalleryProps) {
+export default function Gallery({ isProfilePage, items }: GalleryProps) {
     const galleryCardWidth = 359.3
     const galleryRef = useRef<HTMLDivElement>(null); 
     const [width, setWidth] = useState(0);
@@ -69,8 +69,8 @@ export default function Gallery({ isProfilePage, itemArray }: GalleryProps) {
         // in the calculation
         <div ref={galleryRef} style={gridStyle} className={`gap-y-5 pr-[8px] flex-1 -auto grid grid-cols-[repeat(auto-fit,_359.3px)] `}>
             {
-                itemArray.map( item => (
-                    <GalleryCard isProfilePage={isProfilePage} item={item} key={item.id}></GalleryCard>
+                items.items.map( item => (
+                    <GalleryCard isProfilePage={isProfilePage} item={item} key={item._id.toString()}></GalleryCard>
                 ))
             }
             

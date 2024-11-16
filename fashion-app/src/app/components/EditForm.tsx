@@ -1,19 +1,19 @@
-import Image from "next/image";
-import Button from "../Button";
-import { grotesk } from "../Fonts";
-import { IItemData } from "@/models/itemSchema";
-import UploadIcon from "../svg/UploadIconSVG";
+import { IItem } from '@/models/itemSchema';
+import Button from "./Button";
+import { grotesk } from "./Fonts";
+import { useRouter } from 'next/navigation';
 
 import { useState, ChangeEvent, FormEvent } from 'react';
 
 interface ItemFormProps {
-    onSaveItemData: (enteredItemData: IItemData) => void;
-  }
+    item: IItem;
+    isFormOpen: boolean;
+    setFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-export default function FormCard( {onSaveItemData}:ItemFormProps ) {
-    const [enteredTitle, setTitle] = useState<string>('');
-    const [enteredDescription, setDescription] = useState<string>('');
-    const [enteredLink, setLink] = useState<string>('');
+export default function EditForm( {item, setFormOpen, isFormOpen}:ItemFormProps,  ) {
+    const [enteredTitle, setTitle] = useState<string>(item.title);
+    const [enteredDescription, setDescription] = useState<string>(item.description);
 
     const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
@@ -23,29 +23,42 @@ export default function FormCard( {onSaveItemData}:ItemFormProps ) {
         setDescription(event.target.value);
     };
 
-    const handleLinkChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setLink(event.target.value);
+    const router = useRouter();
+    const submitHandler = async (event: FormEvent) => {
+        event.preventDefault();
+
+        try {
+            const updatedData = {
+                title: enteredTitle,
+                description: enteredDescription
+            }
+            const response = await fetch(`api/items/${item._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedData)
+            })
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok')
+            }
+            setFormOpen(isFormOpen => !isFormOpen);
+            router.refresh();
+        } catch (error) {
+            console.log('Error from EditForm');
+        }
     };
 
-    const submitHandler = (event: FormEvent) => {
-        event.preventDefault();
-    
-        const itemData = {
-            title: enteredTitle,
-            description: enteredDescription,
-            image: enteredLink,
-            creator: "Unknown",
-        }; 
-        onSaveItemData(itemData)
-        // Clear the form inputs after capturing the data entered
-        setTitle('');
-        setLink('');
-        setDescription('');
-    };
+
+
+
+
 
     return(
         <div className="flex flex-col gap-y-3 w-full">
             <form onSubmit={submitHandler} className={`${grotesk.className} flex gap-3 rounded-md shadow-md overflow-hidden bg-white`}>                
+               <img className="w-3/5 object-cover" src={item.image} alt="Place Holder Image" width={362} height={506}/> 
 
                 <div className="p-4">
 
@@ -58,19 +71,6 @@ export default function FormCard( {onSaveItemData}:ItemFormProps ) {
                             placeholder="Name your outfit"
                             value={enteredTitle}
                             onChange={handleTitleChange}
-                            required
-                        />
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">Image Link</h2>
-
-                        <input className="w-11/12 p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
-                            id="outfitImage"
-                            type="text"
-                            placeholder="Enter an image link"
-                            value={enteredLink}
-                            onChange={handleLinkChange}
                             required
                         />
                     </div>
@@ -90,7 +90,7 @@ export default function FormCard( {onSaveItemData}:ItemFormProps ) {
                 </div>
             </form>
 
-            <Button label={"Create"} styles={"m-auto bg-orange text-xl w-2/4 px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={submitHandler} />
+            <Button label={"Update"} styles={"m-auto bg-orange text-xl w-1/4 px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={submitHandler} />
         </div>
 
     );

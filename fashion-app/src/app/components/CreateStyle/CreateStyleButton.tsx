@@ -1,22 +1,12 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
-
+import { IItemData } from "@/models/itemSchema";
 import Button from "../Button";
 import { ReactNode } from 'react';
 import FormCard from "./FormCard";
-
-interface PopUpContainerProps {
-    children: ReactNode;
-}
-
-function PopUpContainer({children}:PopUpContainerProps) {
-    return(
-        <div className="z-10 fixed inset-0 bg-dark top-0 left-0 w-screen h-screen bg-opacity-80 flex items-center justify-center">
-            {children}
-        </div>
-    );
-}
+import { useRouter } from "next/navigation";
+import PopUpContainer from "../PopUpContainer";
 
 export default function CreateStyleButton() {
     const [isFormOpen, setFormOpen] = useState(false);
@@ -38,14 +28,35 @@ export default function CreateStyleButton() {
 
         document.addEventListener("mousedown", handler)
     });
-
+    
+    const router = useRouter();
+    // Handler for posting items
+    const OnSubmit = async (newItem:IItemData) => {
+        try {
+            const response = await fetch('/api/items', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newItem),
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            router.refresh();
+        } catch (error) {
+            console.log(newItem)
+            console.error('Error in CreateItem!', error);
+        }
+    };
+    
     return(
         <div>
             <Button label={"Create a Style"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleCreateAStyleClick} />
 
             {isFormOpen && 
             <PopUpContainer 
-                children={<div ref={areaRef}> <FormCard onSaveStyleData={() => alert("Success")}/> </div>} 
+                children={<div className="" ref={areaRef}> <FormCard onSaveItemData={OnSubmit}/> </div>} 
             />}    
         </div>
     );
