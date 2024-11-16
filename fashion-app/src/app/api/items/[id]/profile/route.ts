@@ -7,6 +7,8 @@ interface RouteParams {
     params: { id: string };
 }
 
+// getting the items by creator id
+// this can be configured later on to account for user id or something
 export async function GET(request:NextRequest, { params }: RouteParams) {
     try {
         const {id} = params;
@@ -20,18 +22,16 @@ export async function GET(request:NextRequest, { params }: RouteParams) {
     }
 }
 
+// deleting an item associated with the user in profile page
 export async function DELETE(request: NextRequest, {params}: RouteParams) {
     const { id } = params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return NextResponse.json({message: "Invalid ID format"}, {status: 400})
     }
-    
     await connectMongoDB();
     const deletedItem = await Item.findByIdAndDelete(id);
-    
     if (!deletedItem) {
         return NextResponse.json({ message: "Item not found"}, {status: 404});
     }
-
     return NextResponse.json({ message: "Item deleted" }, {status: 200});
 }

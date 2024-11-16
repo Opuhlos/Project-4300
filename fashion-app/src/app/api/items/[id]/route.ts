@@ -7,6 +7,7 @@ interface RouteParams {
     params: { id: string };
 }
 
+// updating an item by id
 export async function PUT(request: NextRequest, { params }: RouteParams) {
     const {id} = params;
     const { title: title, description: description} = await request.json();
@@ -15,6 +16,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     return NextResponse.json({ message: "Item Updated"}, { status: 200 });
 }
 
+// getting a specific item by id
 export async function GET(request:NextRequest, { params }: RouteParams) {
     const {id} = params;
     await connectMongoDB();
