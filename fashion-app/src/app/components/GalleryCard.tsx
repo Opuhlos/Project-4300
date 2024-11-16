@@ -63,7 +63,7 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
         <div className="grid grid-cols-1 justify-items-center max-w-[359.3px]">
             <div className="grid gap-3 rounded-md shadow-md h-fit overflow-hidden bg-white">
                 <div className="max-h-96">
-                    <img className="h-[384px    ] w-[359.3px] object-cover" src={item.image} alt="Place Holder Image" /> 
+                    <img className="h-[384px] w-[359.3px] object-cover" src={item.image} alt="Place Holder Image" /> 
                 </div>
                 <div className={`${grotesk.className} p-4 max-w-[362px]`}>
                     <div className="flex justify-between">
