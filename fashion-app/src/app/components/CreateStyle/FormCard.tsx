@@ -34,7 +34,7 @@ export default function FormCard( {onSaveItemData}:ItemFormProps ) {
             title: enteredTitle,
             description: enteredDescription,
             image: enteredLink,
-            creator: "N/A",
+            creator: "Unknown",
         }; 
         onSaveItemData(itemData)
         // Clear the form inputs after capturing the data entered

@@ -1,11 +1,30 @@
-"use client";
-
 import PageHeader from "../components/PageHeader";
 import Navigation from "../components/Navigation";
 import Gallery from "../components/Gallery";
 import ProfileSidebar from "../components/ProfileSidebar"; 
 
-export default function Home() {
+// To who ever is implementing the feature to get the correct
+// items based on the user, you just need to adjust the /items/[id]/profile route
+// to take, say, the user id or something instead. At the moment all its doing 
+// is using the name of the creator to filter for items made by that creator.
+// for testing im just using "Unknown" - eric
+const creator = "Unknown";
+
+const getUserItems = async () => {
+  try {
+    const response = await fetch("http://localhost:3000/api/items/Unknown/profile", {
+      cache: "no-store"
+    })
+    return response.json();
+  } catch (error) {
+
+    console.log("Failed to get items", error)
+  }
+}
+
+export default async function Home() {
+  const items = await getUserItems();
+
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <Navigation isHome={false} isLoggedIn={true} />
@@ -17,7 +36,7 @@ export default function Home() {
 
           {/* Gallery on the right */}
           <div className="flex-1 overflow-y-auto">
-            {/* <Gallery isProfilePage={true} itemArray={}/> */}
+            <Gallery isProfilePage={true} items={items}/>
           </div>
 
         </div>
