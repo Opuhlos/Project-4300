@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Button from "./Button";
 import { grotesk } from './Fonts';
-import IconButton from "./IconButton";
 import { useRouter } from "next/navigation";
 import EditSVG from "./svg/EditSVG";
 import DeleteSVG from "./svg/DeleteSVG";
 import { IItem } from '@/models/itemSchema';
+import PopUpContainer from "./PopUpContainer";
+import { useState, useEffect, useRef } from "react";
+import EditForm from "./EditForm";
 
 interface ProfileProps {
     image: string;
@@ -20,13 +22,27 @@ interface RegularCardProps {
     isProfilePage: boolean; 
 }
 
-const handleEditClick = () => {
-    console.log("Edit button clicked");
-};
-
-
 
 export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
+    // Opening form Logic
+    const [isFormOpen, setFormOpen] = useState(false);
+    const areaRef = useRef<HTMLDivElement>(null);
+    const handleEditClick = () => {
+        setFormOpen(isFormOpen => !isFormOpen)
+    }
+    // useEffect logic for the edit form
+    useEffect(() => {
+        // Handler to close the drop down if clicked outside
+        const handler = (event: MouseEvent) => {
+            if(areaRef.current && !areaRef.current.contains(event.target as Node)){
+                setFormOpen(false);
+            }
+        } 
+        document.addEventListener("mousedown", handler)
+    });
+
+
+    // Delete logic
     const router = useRouter();
     const handleDeleteClick = async () => {
         try {
@@ -74,6 +90,11 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
 
                 </div>    
             </div>
+
+            {isFormOpen && 
+            <PopUpContainer 
+                children={<div className="" ref={areaRef}> <EditForm item={item} isFormOpen={isFormOpen} setFormOpen={setFormOpen}/> </div>} 
+            />}    
         </div>
     );
 }

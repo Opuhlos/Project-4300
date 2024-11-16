@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { FormEvent, useEffect, useState } from "react";
-import { Item } from '../styles/page';
+import { Item } from './styles/page';
 
 const router = useRouter();
 const { id } = router.query;

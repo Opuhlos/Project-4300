@@ -6,18 +6,7 @@ import Button from "../Button";
 import { ReactNode } from 'react';
 import FormCard from "./FormCard";
 import { useRouter } from "next/navigation";
-
-interface PopUpContainerProps {
-    children: ReactNode;
-}
-
-function PopUpContainer({children}:PopUpContainerProps) {
-    return(
-        <div className="z-10 fixed inset-0 bg-dark top-0 left-0 w-screen h-screen bg-opacity-80 flex items-center justify-center">
-            {children}
-        </div>
-    );
-}
+import PopUpContainer from "../PopUpContainer";
 
 export default function CreateStyleButton() {
     const [isFormOpen, setFormOpen] = useState(false);
@@ -40,9 +29,8 @@ export default function CreateStyleButton() {
         document.addEventListener("mousedown", handler)
     });
     
-    // Handler for posting items
     const router = useRouter();
-
+    // Handler for posting items
     const OnSubmit = async (newItem:IItemData) => {
         try {
             const response = await fetch('/api/items', {
