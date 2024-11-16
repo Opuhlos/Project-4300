@@ -22,18 +22,3 @@ export async function GET(request:NextRequest, { params }: RouteParams) {
     return NextResponse.json({ item }, { status: 200});
 }
 
-export async function DELETE(request: NextRequest, {params}: RouteParams) {
-    const { id } = params;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return NextResponse.json({message: "Invalid ID format"}, {status: 400})
-    }
-    
-    await connectMongoDB();
-    const deletedItem = await Item.findByIdAndDelete(id);
-    
-    if (!deletedItem) {
-        return NextResponse.json({ message: "Item not found"}, {status: 404});
-    }
-
-    return NextResponse.json({ message: "Item deleted" }, {status: 200});
-}

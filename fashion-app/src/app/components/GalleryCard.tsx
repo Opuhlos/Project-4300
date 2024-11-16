@@ -2,6 +2,7 @@ import Image from "next/image";
 import Button from "./Button";
 import { grotesk } from './Fonts';
 import IconButton from "./IconButton";
+import { useRouter } from "next/navigation";
 import EditSVG from "./svg/EditSVG";
 import DeleteSVG from "./svg/DeleteSVG";
 import { IItem } from '@/models/itemSchema';
@@ -23,11 +24,24 @@ const handleEditClick = () => {
     console.log("Edit button clicked");
 };
 
-const handleDeleteClick = () => {
-    console.log("Delete button clicked");
-};
+
 
 export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
+    const router = useRouter();
+    const handleDeleteClick = async () => {
+        try {
+            const response = await fetch(`api/items/${item._id}/profile`, {
+                method: 'DELETE',
+            });
+            if (!response.ok) {
+                throw new Error('Network resposne was not ok');
+            }
+            router.refresh();
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return(
         // Temp grid for testing
         <div className="grid grid-cols-1 justify-items-center max-w-[359.3px]">
@@ -41,13 +55,13 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
                         
                         {isProfilePage ? (
                             <div className="flex space-x-2 justify-end">
-                            <Button label="" styles="border-none" handleClick={handleEditClick}>
+                            <Button label="" styles="border-none rounded-full bg-darkerOrange hover:bg-dark" handleClick={handleEditClick}>
                                 <EditSVG />
                             </Button>
-                            <Button label="" styles="border-none" handleClick={handleDeleteClick}>
+                            <Button label="" styles="border-none rounded-full bg-deleteRed hover:bg-dark" handleClick={handleDeleteClick}>
                                 <DeleteSVG />
                             </Button>
-                        </div>
+                            </div>
                         ) : (
                             <p className="text-gray-500">By {item.creator}</p>
                         )}
