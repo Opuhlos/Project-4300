@@ -7,9 +7,19 @@ import { ReactNode } from 'react';
 import FormCard from "./FormCard";
 import { useRouter } from "next/navigation";
 import PopUpContainer from "../PopUpContainer";
+import { Session } from "next-auth";
 
-export default function CreateStyleButton() {
+interface CreateStyleButtonProps {
+    userEmail: string;
+    userName: string;
+}
+
+export default function CreateStyleButton({ userEmail, userName } : CreateStyleButtonProps) {
     const [isFormOpen, setFormOpen] = useState(false);
+
+    console.log("In create button")
+    console.log(userEmail);
+    console.log(userName);
 
     const handleCreateAStyleClick = () => {
         setFormOpen(isFormOpen => !isFormOpen)
@@ -56,7 +66,7 @@ export default function CreateStyleButton() {
 
             {isFormOpen && 
             <PopUpContainer 
-                children={<div className="" ref={areaRef}> <FormCard onSaveItemData={OnSubmit}/> </div>} 
+                children={<div className="" ref={areaRef}> <FormCard onSaveItemData={OnSubmit} userEmail={userEmail} userName={userName} /> </div>} 
             />}    
         </div>
     );

@@ -11,11 +11,16 @@ import ProfileMenu from './ProfileMenu';
 interface NavigationProps {
     isHome: boolean;
     isLoggedIn: boolean;
+    userEmail: string;
+    userName: string;
 }
 
-export default function Navigation( {isHome, isLoggedIn}:NavigationProps ) {
+export default function Navigation( {isHome, isLoggedIn, userEmail, userName}:NavigationProps ) {
     const router = useRouter();
- 
+    console.log("In nav")
+    console.log(userEmail);
+    console.log(userName);
+
     const handleSignUpClick = () => {
         router.push('/signup');
     };
@@ -26,6 +31,7 @@ export default function Navigation( {isHome, isLoggedIn}:NavigationProps ) {
 
     const mx = isHome ? "mx-24" : "mx-5";
     const mt = isHome ? "mt-10" : "mt-5";
+    
 
     return(
         <div className={`bg-background ${mx} ${mt} flex justify-between items-center`}>
@@ -35,7 +41,7 @@ export default function Navigation( {isHome, isLoggedIn}:NavigationProps ) {
             <div className="flex space-x-10 items-center">
                 <NavigationLink styles={"text-xl"} label={"Styles"} dest="/styles"/>
 
-                {isLoggedIn ? <CreateStyleButton/> : <NavigationLink styles={"text-xl"} label={"Log In"} dest="/login"/> }
+                {isLoggedIn ? <CreateStyleButton userEmail={userEmail} userName={userName}/> : <NavigationLink styles={"text-xl"} label={"Log In"} dest="/login"/> }
         
                 {isLoggedIn ? <ProfileMenu/>: <Button label={"Become a Creator"} styles={"text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={handleSignUpClick} />}
             </div>

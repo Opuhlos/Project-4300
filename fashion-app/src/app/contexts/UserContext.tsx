@@ -2,8 +2,9 @@
 import { createContext, useState, ReactNode, useContext } from 'react';
 
 interface UserContextType {
+    email: string | null | undefined;
     isLoggedIn: boolean;
-    login: () => void;
+    login: (email: string | null | undefined) => void;
     logout: () => void;
 }
 
@@ -12,12 +13,20 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 // Provider component
 export const UserProvider = ({ children }: { children: ReactNode }) => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [email, setEmail] = useState<string | null | undefined>(null);
   
-    const login = () => setIsLoggedIn(true);
-    const logout = () => setIsLoggedIn(false);
+    const login = (userEmail: string | null | undefined) => {
+      setEmail(userEmail);
+      setIsLoggedIn(true);
+    }
+    const logout = () => {
+      setIsLoggedIn(false);
+      setEmail(null);
+    }
+    
   
     return (
-      <UserContext.Provider value = {{isLoggedIn, login, logout}}>
+      <UserContext.Provider value = {{email, isLoggedIn, login, logout}}>
         {children}
       </UserContext.Provider>
     );

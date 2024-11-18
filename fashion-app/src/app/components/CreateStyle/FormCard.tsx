@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import Button from "../Button";
 import { grotesk } from "../Fonts";
@@ -8,9 +9,11 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 
 interface ItemFormProps {
     onSaveItemData: (enteredItemData: IItemData) => void;
-  }
+    userEmail: string;
+    userName: string;
+}
 
-export default function FormCard( {onSaveItemData}:ItemFormProps ) {
+export default function FormCard( {onSaveItemData, userEmail, userName}:ItemFormProps ) {
     const [enteredTitle, setTitle] = useState<string>('');
     const [enteredDescription, setDescription] = useState<string>('');
     const [enteredLink, setLink] = useState<string>('');
@@ -29,12 +32,13 @@ export default function FormCard( {onSaveItemData}:ItemFormProps ) {
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
-    
+        
         const itemData = {
             title: enteredTitle,
             description: enteredDescription,
             image: enteredLink,
-            creator: "Unknown",
+            name: userName,
+            email: userEmail,
         }; 
         onSaveItemData(itemData)
         // Clear the form inputs after capturing the data entered
