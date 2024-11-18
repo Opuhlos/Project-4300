@@ -59,8 +59,9 @@ export default function EditForm( {item, setViewOpen, isViewOpen}:ItemFormProps,
         // 
 
             <div className="flex flex-row w-full">
-                <img className="w-2/5 object-cover rounded-l-md" src={item.image} alt="Style Image"/> 
-                <div className={`${grotesk.className} w-3/5 flex flex-col gap-3 rounded-r-md shadow-md overflow-hidden bg-white`}>                
+                <img className="w-[359.3px] object-cover rounded-l-md" src={item.image} alt="Style Image"/> 
+
+                <div className={`${grotesk.className}  flex flex-col gap-3 rounded-r-md shadow-md overflow-hidden bg-white`}>                
                     <div className="p-4">
 
                         <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">{item.title}</h2>
