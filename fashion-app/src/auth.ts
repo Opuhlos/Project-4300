@@ -6,7 +6,7 @@ import { User } from "./models/User";
 import { compare } from "bcryptjs";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [Credentials({
+  providers: [Google, Credentials({
     name: 'Credentials',
     credentials: {
       email: {label: "Email", type: "email"},
@@ -51,10 +51,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
     }
 
-  }), Google({
-    clientId: process.env.AUTH_GOOGLE_ID,
-    clientSecret: process.env.AUTH_GOOGLE_SECRET,
-  })],
+  }), 
+  Google({
+    clientId: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  })
+],
 
   pages: {
     signIn: '/login'
@@ -100,5 +102,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
     }
   }
+    
   
 })

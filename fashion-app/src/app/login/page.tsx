@@ -3,7 +3,7 @@ import Button from "../components/Button"
 import { grotesk } from '../components/Fonts';
 import { useState } from 'react';
 import StyleLink from '../components/StyleLink';
-import { auth, signIn } from "@/auth"
+import { signIn } from "@/auth"
 import { Input } from "../components/Input";
 import Link from "next/link";
 import { login } from "@/action/user";
@@ -38,7 +38,7 @@ const Login = async () => {
           <form
             action={async () => {
               "use server"
-              await signIn("google", { redirectTo: "/profile" })
+              await signIn("google")
           }}>
             <button className="px-4 py-2 border flex gap-2 border-dark  rounded-lg text-slate-700 dark:text-slate-200 bg-dark dark:hover:bg-gray-700 hover:text-white transition duration-150">
               <Image className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy"  width={24} height={24} alt="google logo"></Image>
