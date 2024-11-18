@@ -96,7 +96,7 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
                             </Button>
                             </div>
                         ) : (
-                            <p className="text-gray-500">By {item.creator}</p>
+                            <p className="text-gray-500">By {item.name}</p>
                         )}
                     </div>
 
