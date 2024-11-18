@@ -29,12 +29,12 @@ const login = async (formData: FormData) => {
 };
 
 const register = async (formData: FormData) => {
-    const firstName = formData.get("firstname") as string;
+    const name = formData.get("name") as string;
     const lastName = formData.get("lastname") as string;
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
 
-    if(!firstName || !lastName || !email || !password) {
+    if(!name || !lastName || !email || !password) {
         throw new Error("Please fill all fields");
     }
 
@@ -47,9 +47,30 @@ const register = async (formData: FormData) => {
     
     const hashedPassword = await hash(password, 10);
 
-    await User.create({ firstName, lastName, email, password: hashedPassword });
+    await User.create({ name, lastName, email, password: hashedPassword });
     console.log("User created successfully");
     redirect('/login');
+};
+
+const createItem = async (formData: FormData) => {
+    const title = formData.get("title") as string;
+    const image = formData.get("image") as string;
+    const description = formData.get("description") as string;
+    const session = await getSession();
+    const userEmail = session?.user?.email;
+    const userName = session?.user?.name;
+    const password = formData.get("password") as string;
+
+    if(!title || !image || !description ) {
+        throw new Error("Please fill all fields");
+    }
+
+    await connectMongoDB();
+
+    
+    await Item.create({ title, image, description, email: userEmail, name: userName });
+    console.log("Item created successfully");
+    redirect('/profile');
 };
 
 const fetchAllCreatorItems = async () => {
@@ -68,4 +89,4 @@ const getUser = async () => {
     return user?.email;
 }
 
-export { register, login, fetchAllCreatorItems, getUser };
+export { register, login, fetchAllCreatorItems, getUser, createItem };

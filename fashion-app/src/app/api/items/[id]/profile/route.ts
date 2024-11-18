@@ -14,7 +14,7 @@ export async function GET(request:NextRequest, { params }: RouteParams) {
         const {id} = params;
         console.log(id);
         await connectMongoDB();
-        const items = await Item.find({ creator: id });
+        const items = await Item.find({ email: id });
         return NextResponse.json({ items }, { status: 200});
     } catch (error) {
         console.log(error);

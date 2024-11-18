@@ -40,7 +40,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
 
       const userData = {
-        firstName: user.firstName,
+        name: user.name,
         lastName: user.lastName,
         email: user.email,
         role: user.role,

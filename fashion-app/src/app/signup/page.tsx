@@ -30,7 +30,7 @@ const Signup = async () => {
               <form action={register}>
                 <div>
                   <h3>First Name</h3>
-                  <Input id="firstname" placeholder="Yevone" type="text" name="firstname" />
+                  <Input id="name" placeholder="Yevone" type="text" name="name" />
                   <h3>Last Name</h3>
                   <Input id="lastname" placeholder="Stein" type="text" name="lastname" />
                 </div>

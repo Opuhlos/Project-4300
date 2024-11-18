@@ -16,7 +16,7 @@ const getUserItems = async () => {
   const session = await getSession();
   const user = session?.user?.email;
   try {
-    const response = await fetch("http://localhost:3000/api/items/[id]/profile", {
+    const response = await fetch(`http://localhost:3000/api/items/${user}/profile`, {
       cache: "no-store"
     })
     return response.json();
@@ -30,12 +30,20 @@ export default async function Profile() {
   const session = await getSession();
   const user = session?.user;
   if(!user) return redirect("/login");
+  console.log(user);
+  // Checks if the usr is logged in to display proper nav
+  const isIn = user ? true : false;
+  const userEmail = user?.email;
+  const userName = user?.name;
+  if(!userEmail || !userName) throw new Error("Email or Name null")
+  console.log(userEmail);
+  console.log(userName);
 
   const items = await getUserItems();
 
   return (
     <div className="h-screen flex flex-col overflow-hidden">
-      <Navigation isHome={false} isLoggedIn={true} />
+      <Navigation isHome={false} isLoggedIn={true} userEmail={userEmail} userName={userName}/>
       <PageHeader header="Your Closet" />
       
       <div className="flex flex-row flex-1 overflow-hidden mx-5">
