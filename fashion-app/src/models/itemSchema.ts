@@ -6,7 +6,7 @@ export interface IItemData {
     title: string;
     description: string;
     image: string;
-    creator: string;
+    name: string;
 }
 
 // this is for getting, the document ensures that we get the _id
@@ -26,7 +26,7 @@ const itemSchema = new Schema<IItem>(
             type: String,
             required: true,
         },
-        creator: {
+        name: {
             type: String,
             required: true,
         },

@@ -1,20 +1,23 @@
+
 import Image from "next/image";
 import Button from "../Button";
 import { grotesk } from "../Fonts";
 import { IItemData } from "@/models/itemSchema";
 import UploadIcon from "../svg/UploadIconSVG";
+import { getUser } from "@/action/user"
 
 import { useState, ChangeEvent, FormEvent } from 'react';
+import { getSession } from "@/libs/getSession";
 
 interface ItemFormProps {
     onSaveItemData: (enteredItemData: IItemData) => void;
-  }
+}
 
-export default function FormCard( {onSaveItemData}:ItemFormProps ) {
+export default async function FormCard( {onSaveItemData}:ItemFormProps ) {
     const [enteredTitle, setTitle] = useState<string>('');
     const [enteredDescription, setDescription] = useState<string>('');
     const [enteredLink, setLink] = useState<string>('');
-
+    
     const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
     };
@@ -29,12 +32,11 @@ export default function FormCard( {onSaveItemData}:ItemFormProps ) {
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
-    
+        
         const itemData = {
             title: enteredTitle,
             description: enteredDescription,
             image: enteredLink,
-            creator: "Unknown",
         }; 
         onSaveItemData(itemData)
         // Clear the form inputs after capturing the data entered

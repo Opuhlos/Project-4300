@@ -2,17 +2,21 @@ import PageHeader from "../components/PageHeader";
 import Navigation from "../components/Navigation";
 import Gallery from "../components/Gallery";
 import ProfileSidebar from "../components/ProfileSidebar"; 
+import { getSession } from "@/libs/getSession";
+import { redirect } from "next/navigation";
 
 // To who ever is implementing the feature to get the correct
 // items based on the user, you just need to adjust the /items/[id]/profile route
 // to take, say, the user id or something instead. At the moment all its doing 
 // is using the name of the creator to filter for items made by that creator.
 // for testing im just using "Unknown" - eric
-const creator = "Unknown";
+//const creator = "Unknown";
 
 const getUserItems = async () => {
+  const session = await getSession();
+  const user = session?.user?.email;
   try {
-    const response = await fetch("http://localhost:3000/api/items/Unknown/profile", {
+    const response = await fetch("http://localhost:3000/api/items/[id]/profile", {
       cache: "no-store"
     })
     return response.json();
@@ -22,7 +26,11 @@ const getUserItems = async () => {
   }
 }
 
-export default async function Home() {
+export default async function Profile() {
+  const session = await getSession();
+  const user = session?.user;
+  if(!user) return redirect("/login");
+
   const items = await getUserItems();
 
   return (
