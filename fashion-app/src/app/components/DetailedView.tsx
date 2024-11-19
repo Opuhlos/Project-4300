@@ -61,18 +61,20 @@ export default function EditForm( {item, setViewOpen, isViewOpen}:ItemFormProps,
             <div className="flex flex-row w-full">
                 <img className="w-[359.3px] object-cover rounded-l-md" src={item.image} alt="Style Image"/> 
 
-                <div className={`${grotesk.className}  flex flex-col gap-3 rounded-r-md shadow-md overflow-hidden bg-white`}>                
+                <div className={`${grotesk.className} w-96 flex flex-col gap-3 rounded-r-md shadow-md overflow-hidden bg-white`}>                
                     <div className="p-4">
 
                         <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">{item.title}</h2>
-
+                        <p className="font-normal text-md font-cardGrey" >{item.name}</p>
                         <div className="flex flex-col gap-2 lg:pb-6">
                             <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">Description</h2>
-
-                            <textarea disabled className="w-11/12 h-40 p-2 pl-4 border-2 resize-none border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+                            <p className="w-11/12">
+                                {item.description}
+                            </p>
+                            {/* <textarea disabled className="w-11/12 h-40 p-2 pl-4 border-2 resize-none border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
                                 id="description"
                                 value={enteredDescription}
-                            />
+                            /> */}
                         </div>
 
                     </div>
