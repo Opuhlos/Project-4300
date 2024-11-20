@@ -25,7 +25,7 @@ export default function EditForm( {item }:ItemFormProps,  ) {
                             <p className="mb-6 overflow-y-auto max-h-24">{item.description} </p>
                         </div>
                         
-                        <Articles/>
+                        <Articles articles={item.articles}/>
                     
                     </div>
                 </div>
