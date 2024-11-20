@@ -1,6 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
+export const article_types = [
+    { value: 'hat', label: 'Hat' },
+    { value: 'jacket', label: 'Jacket' },
+    { value: 'pants', label: 'Pants' },
+    { value: 'shirt', label: 'shirt' },
+    { value: 'shoes', label: 'shoes' }
+]
+
 export interface Article {
     type: string; // Current supported types can be found in public/images/articles
     name: string;
