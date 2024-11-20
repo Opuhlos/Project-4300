@@ -72,7 +72,15 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
         }
     };
 
+    // either returns the description or if its too long, shorten it and concat ... for gallery display
+    const truncateText = (text:string) => {
+        const limit = 35;
+        const words = text.slice(0,limit);
+        return text.length > words.length ? words + '. . .' : text;
+      };
+
     return(
+
         // Temp grid for testing
         <div className="grid grid-cols-1 justify-items-center max-w-[359.3px]">
 
@@ -103,7 +111,7 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
                     <hr className="border-cardGrey m-0 mt-2 mb-2"/>
 
                     {/* Description */}
-                    <p className={"text-left"}>{item.description}</p>
+                    <p className={"text-left"}>{truncateText(item.description)}</p>
 
                 </div>    
             </div>

@@ -11,21 +11,22 @@ interface ItemFormProps {
 export default function EditForm( {item }:ItemFormProps,  ) {
 
     return(
-            <div className="flex flex-row w-full">
+            <div className="flex flex-row h-[480px]">
                 <img className="w-[359.3px] object-cover rounded-l-md" src={item.image} alt="Style Image"/> 
 
-                <div className={`${grotesk.className} w-96 flex flex-col gap-3 rounded-r-md shadow-md overflow-hidden bg-white`}>                
-                    <div className="p-4">
+                <div className={`${grotesk.className} px-4 w-96 flex flex-col gap-3 rounded-r-md shadow-md  bg-white`}>                
+                    <div className="flex flex-col h-full">
 
-                        <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">{item.title}</h2>
-                        <p className="font-normal text-md font-cardGrey" >{item.name}</p>
-                        
-                        <div className="flex flex-col gap-2 lg:pb-6">
-                            <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">Description</h2>
-                            <p className="w-11/12">{item.description} </p>
+                        <div>
+                            <h2 className="font-bold md:text-lg lg:text-xl pt-6">{item.title}</h2>
+                            <p className="font-normal text-md font-cardGrey" >{item.name}</p>
+                            <br></br>
+                            <h2 className="font-bold md:text-lg lg:text-">Description</h2>
+                            <p className="mb-6 overflow-y-auto max-h-24">{item.description} </p>
                         </div>
-
+                        
                         <Articles/>
+                    
                     </div>
                 </div>
             </div>

@@ -48,14 +48,13 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
     };
 
     return(
-        <div className="flex flex-col gap-y-3 w-full">
+        <div className="flex flex-col gap-y-3">
             <form onSubmit={submitHandler} className={`${grotesk.className} flex gap-3 rounded-md shadow-md overflow-hidden bg-white`}>                
 
                 <div className="p-4">
 
                     <div className="flex flex-col gap-2">
                         <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">Outfit Name</h2>
-
                         <input className="w-11/12 p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
                             id="outfitName"
                             type="text"
@@ -68,7 +67,6 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
 
                     <div className="flex flex-col gap-2">
                         <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">Image Link</h2>
-
                         <input className="w-11/12 p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
                             id="outfitImage"
                             type="text"
