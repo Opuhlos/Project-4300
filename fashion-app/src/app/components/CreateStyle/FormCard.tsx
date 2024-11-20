@@ -3,29 +3,7 @@ import Image from "next/image";
 import Button from "../Button";
 import { grotesk } from "../Fonts";
 import { IItemData } from "@/models/itemSchema";
-import React from 'react';
-import Select from 'react-select'; // npm i --save react-select
-import { article_types } from "../Articles";
-
-const customStyles = {
-    control: (base, state) => ({
-      ...base,
-      borderRadius: '8px', // Set your desired border radius
-      borderColor: state.isFocused ?'#FFBF5F':'#CBCED5',  // Optional: change border color
-      boxShadow: 'none',    // Optional: remove default focus shadow
-      borderWidth: '2px',
-      height: '43.2px',
-    }),
-    option: (base, state) => ({
-      ...base,
-      backgroundColor: state.isSelected
-        ? '#4CAF50' // Highlight color for selected option
-        : state.isFocused
-        ? '#FFBF5F' // Highlight color for hovered option
-        : 'white', // Default background
-      color: state.isSelected ? 'white' : 'black', // Text color
-    }),
-  };
+import ArticleInputs from "../Article Stuffs/ArticleInputs";
 
 import { useState, ChangeEvent, FormEvent } from 'react';
 
@@ -110,18 +88,26 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
 
                 </div>
 
-
-
-
-
-
-
-
                 {/* ARTICLES */}
-                <div className="p-4 flex flex-col gap-y-3">
-                    <h2 className="font-bold md:text-lg lg:text-xl pt-6">Articles</h2>
-                    <Select styles={customStyles} options={article_types}/>
+                <div className="p-4 flex flex-row gap-x-3">
 
+                    <div className="flex flex-col gap-y-3">
+                        <h2 className="font-bold md:text-lg lg:text-xl pt-6">Article Type</h2>
+                        <ArticleInputs/>
+                    </div>
+
+                    <div className="flex flex-col gap-y-3">
+                        <h2 className="font-bold md:text-lg lg:text-xl pt-6">Name</h2>
+                        <input className="p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+                        id="articleName"
+                        type="text"
+                        placeholder="Name the article"
+                        // value={enteredLink}
+                        // onChange={handleLinkChange}
+                        required
+                    />
+                    </div>
+                
                 </div>
 
             </form>
