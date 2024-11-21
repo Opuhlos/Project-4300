@@ -11,7 +11,7 @@ const customStyles = {
       borderColor: state.isFocused ?'#FFBF5F':'#CBCED5',  
       boxShadow: 'none',    
       borderWidth: '2px',
-      height: '43.2px',
+      height: '44px',
       '&:hover': {
         borderColor: '#FFBF5F', // Change border color on hover
       }

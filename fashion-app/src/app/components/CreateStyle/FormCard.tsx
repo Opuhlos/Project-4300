@@ -56,7 +56,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                 <div className="p-4 flex flex-col gap-y-3">
 
                     <h2 className="font-bold md:text-lg lg:text-xl pt-6">Outfit Name</h2>
-                    <input className="p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+                    <input className="transition duration-300 hover:border-darkerOrange  p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
                         id="outfitName"
                         type="text"
                         placeholder="Name your outfit"
@@ -66,7 +66,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                     />
 
                     <h2 className="font-bold md:text-lg lg:text-xl">Image Link</h2>
-                    <input className="p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+                    <input className="transition duration-300 hover:border-darkerOrange  p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange hover:border-darkerOrange"
                         id="outfitImage"
                         type="text"
                         placeholder="Enter an image link"
@@ -77,7 +77,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
 
                     <div className="flex flex-col gap-2 lg:pb-6">
                         <h2 className="font-bold md:text-lg lg:text-xl">Description</h2>
-                        <textarea className="h-40 p-2 pl-4 border-2 resize-none border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+                        <textarea className="transition duration-300 hover:border-darkerOrange  h-40 p-2 pl-4 border-2 resize-none border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
                             id="description"
                             placeholder="Write about your item"
                             value={enteredDescription}
@@ -88,8 +88,10 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
 
                 </div>
 
+                <div className="h-1/1 my-4 border-r-2 border-cardGray"></div>
+
                 {/* ARTICLES */}
-                <div className="p-4 flex flex-row gap-x-3">
+                <div className="p-4 flex flex-col gap-y-3">
 
                     <div className="flex flex-col gap-y-3">
                         <h2 className="font-bold md:text-lg lg:text-xl pt-6">Article Type</h2>
@@ -97,8 +99,8 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                     </div>
 
                     <div className="flex flex-col gap-y-3">
-                        <h2 className="font-bold md:text-lg lg:text-xl pt-6">Name</h2>
-                        <input className="p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+                        <h2 className="font-bold md:text-lg lg:text-xl">Name</h2>
+                        <input className="transition duration-300 hover:border-darkerOrange  p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
                         id="articleName"
                         type="text"
                         placeholder="Name the article"
@@ -107,8 +109,39 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                         required
                     />
                     </div>
-                
+
+                    <div className="flex flex-col gap-y-3">
+                        <h2 className="font-bold md:text-lg lg:text-xl">Article Link</h2>
+                        <input className="transition duration-300 hover:border-darkerOrange  p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+                        id="articleLink"
+                        type="text"
+                        placeholder="Enter the article link"
+                        // value={enteredLink}
+                        // onChange={handleLinkChange}
+                        required
+                    />
+                    </div>
+
+                    <div className="h-full flex place-items-end mb-6">
+                        <Button label={"Add Article"} styles={"bg-orange text-xl w-full py-3 hover:bg-dark hover:text-white"} children={""} handleClick={submitHandler} />
+                    </div>
+                    
                 </div>
+
+                <div className="h-1/1 my-4 border-r-2 border-cardGray"></div>
+
+                {/* Show the articles here */}
+                <div className="p-4 flex flex-col gap-y-3">
+
+                    <div className="flex flex-col gap-y-3">
+                        <h2 className="font-bold md:text-lg lg:text-xl pt-6 w-52">Articles</h2>
+          
+                    </div>
+                    
+                </div>
+
+
+                
 
             </form>
 

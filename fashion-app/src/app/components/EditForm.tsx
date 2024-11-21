@@ -61,10 +61,10 @@ export default function EditForm( {item, setFormOpen, isFormOpen}:ItemFormProps,
                 <img className="w-[359.3px]  object-cover rounded-l-md" src={item.image} alt="Place Holder Image"/> 
                 <form onSubmit={submitHandler} className={`${grotesk.className} px-4 w-96 flex flex-col gap-3 rounded-r-md shadow-md overflow-hidden bg-white`}>                
                  
-                    <div className="flex flex-col">
+                    <div className="flex flex-col gap-y-2">
                         <h2 className="font-bold md:text-lg lg:text-xl pt-6">Outfit Name</h2>
 
-                        <input className="p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+                        <input className="transition duration-300 hover:border-darkerOrange  p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
                             id="outfitName"
                             type="text"
                             placeholder="Name your outfit"
@@ -74,7 +74,7 @@ export default function EditForm( {item, setFormOpen, isFormOpen}:ItemFormProps,
                         />
 
                         <h2 className="font-bold md:text-lg lg:text-xl pt-6">Description</h2>
-                        <textarea className="max-h-24 p-1 border-2 resize-none border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+                        <textarea className="transition duration-300 hover:border-darkerOrange  max-h-24 p-1 border-2 resize-none border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
                             id="description"
                             placeholder="Write about your item"
                             value={enteredDescription}
