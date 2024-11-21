@@ -22,6 +22,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
     const [enteredArticleName, setArticleName] = useState<string>('');
     const [enteredArticleLink, setArticleLink] = useState<string>('');
     const [enteredSize, setSize] = useState<string>('');
+    const [selectedType, setType] = useState(null);
 
     const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
@@ -47,6 +48,10 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
         setSize(event.target.value);
     };
 
+    const handleTypeChange = (selectedOption) => {
+        setType(selectedOption);
+      };
+
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
         
@@ -67,11 +72,35 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
         setArticleLink('');
     };
 
+    const articleHandler = (event: FormEvent) => {
+        event.preventDefault();
+
+        // ensures the selectType.value won't be null
+        if (!enteredArticleLink.trim() || !selectedType || !enteredArticleName.trim() || !enteredSize.trim()) {
+            alert("To add an article, all of the relevant input fields must be filled!");
+            return;
+        }
+
+        const articleData = {
+            type: selectedType.value,
+            name: enteredArticleName,
+            url: enteredArticleLink,
+            size: enteredSize,
+        }
+
+        console.log(articleData)
+
+        setType(null);
+        setArticleName('');
+        setArticleLink('');
+        setSize('');
+    }
+
     return(
         <div className="flex flex-col gap-y-3">
 
             <form onSubmit={submitHandler} className={`${grotesk.className} flex flex-row rounded-md shadow-md overflow-hidden bg-white`}>                
-                {/* Input for outfit name, image link, and description */}
+                {/* OUTFIT NAME, LINK, and DESCRIPTOIN INPUT FORM */}
                 <div className="p-4 flex flex-col gap-y-3">
 
                     <h2 className="font-bold md:text-lg lg:text-xl pt-6">Outfit Name</h2>
@@ -107,15 +136,16 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
 
                 </div>
 
+                {/* DIVIDER */}
                 <div className="h-1/1 my-4 border-r-2 border-cardGray"></div>
 
-                {/* ARTICLES */}
+                {/* ARTICLES CREATION FORM */}
                 <form className="p-4 flex flex-col gap-y-3">
 
                     <div className="flex flex-row justify-between">
                         <div className="flex flex-col gap-y-3">
                             <h2 className="font-bold md:text-lg lg:text-xl pt-6">Article Type</h2>
-                            <Select styles={article_type_dropdown_styles} options={article_types}/>
+                            <Select required styles={article_type_dropdown_styles} value={selectedType} options={article_types} onChange={handleTypeChange}/>
                         </div>
 
                         <div className="flex flex-col gap-y-3 max-w-16">
@@ -157,14 +187,15 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                     </div>
 
                     <div className="h-full flex place-items-end mb-6">
-                        <Button label={"Add Article"} styles={"bg-orange text-xl w-full py-3 hover:bg-dark hover:text-white"} children={""} handleClick={submitHandler} />
+                        <Button label={"Add Article"} styles={"bg-orange text-xl w-full py-3 hover:bg-dark hover:text-white"} children={""} handleClick={articleHandler} />
                     </div>
                     
                 </form>
 
+                {/* DIVIDER */}
                 <div className="h-1/1 my-4 border-r-2 border-cardGray"></div>
 
-                {/* Show the articles here */}
+                {/* ARTICLE DISPLAY */}
                 <div className="p-4 flex flex-col gap-y-3">
 
                     <div className="flex flex-col gap-y-3">
@@ -178,7 +209,8 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                 
 
             </form>
-
+            
+            {/* BUTTON THAT UPLOADS THE STYLE */}
             <Button label={"Create"} styles={"m-auto bg-orange text-xl w-2/4 px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={submitHandler} />
         </div>
 
