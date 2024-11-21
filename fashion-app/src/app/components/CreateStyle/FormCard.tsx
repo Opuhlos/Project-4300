@@ -3,7 +3,9 @@ import Image from "next/image";
 import Button from "../Button";
 import { grotesk } from "../Fonts";
 import { IItemData } from "@/models/itemSchema";
-import ArticleInputs from "../Article Stuffs/ArticleInputs";
+import { article_type_dropdown_styles } from "../Articles";
+import { article_types } from "../Articles";
+import Select from 'react-select';
 
 import { useState, ChangeEvent, FormEvent } from 'react';
 
@@ -18,7 +20,8 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
     const [enteredDescription, setDescription] = useState<string>('');
     const [enteredLink, setLink] = useState<string>('');
     const [enteredArticleName, setArticleName] = useState<string>('');
-    const [enteredArticleLinuk, setArticleLink] = useState<string>('');
+    const [enteredArticleLink, setArticleLink] = useState<string>('');
+    const [enteredSize, setSize] = useState<string>('');
 
     const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
@@ -38,6 +41,10 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
 
     const handleArticleLinkChange = (event: ChangeEvent<HTMLInputElement>) => {
         setArticleLink(event.target.value);
+    };
+
+    const handleSizeChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setSize(event.target.value);
     };
 
     const submitHandler = (event: FormEvent) => {
@@ -78,7 +85,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                     />
 
                     <h2 className="font-bold md:text-lg lg:text-xl">Image Link</h2>
-                    <input className="transition duration-300 hover:border-darkerOrange  p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange hover:border-darkerOrange"
+                    <input className="transition duration-300 hover:border-darkerOrange  p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
                         id="outfitImage"
                         type="text"
                         placeholder="Enter an image link"
@@ -105,10 +112,25 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                 {/* ARTICLES */}
                 <form className="p-4 flex flex-col gap-y-3">
 
-                    <div className="flex flex-col gap-y-3">
-                        <h2 className="font-bold md:text-lg lg:text-xl pt-6">Article Type</h2>
-                        <ArticleInputs/>
+                    <div className="flex flex-row justify-between">
+                        <div className="flex flex-col gap-y-3">
+                            <h2 className="font-bold md:text-lg lg:text-xl pt-6">Article Type</h2>
+                            <Select styles={article_type_dropdown_styles} options={article_types}/>
+                        </div>
+
+                        <div className="flex flex-col gap-y-3 max-w-16">
+                            <h2 className="font-bold md:text-lg lg:text-xl pt-6">Size</h2>
+                            <input className="transition duration-300 hover:border-darkerOrange p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+                            id="articleName"
+                            type="text"
+                            placeholder="Size"
+                            value={enteredSize}
+                            onChange={handleSizeChange}
+                            required
+                            />
+                        </div>
                     </div>
+                    
 
                     <div className="flex flex-col gap-y-3">
                         <h2 className="font-bold md:text-lg lg:text-xl">Name</h2>
@@ -128,7 +150,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                         id="articleLink"
                         type="text"
                         placeholder="Enter the article link"
-                        value={enteredArticleLinuk}
+                        value={enteredArticleLink}
                         onChange={handleArticleLinkChange}
                         required
                     />
