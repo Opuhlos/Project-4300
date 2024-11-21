@@ -6,6 +6,8 @@ import { IItemData } from "@/models/itemSchema";
 import { article_type_dropdown_styles } from "../Articles";
 import { article_types } from "../Articles";
 import Select from 'react-select';
+import { Article } from "../Articles";
+import Articles from "../Articles";
 
 import { useState, ChangeEvent, FormEvent } from 'react';
 
@@ -23,6 +25,13 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
     const [enteredArticleLink, setArticleLink] = useState<string>('');
     const [enteredSize, setSize] = useState<string>('');
     const [selectedType, setType] = useState(null);
+
+    const ARTICLES_ARRAY: Article[] = []
+    const [articles, setArticles] = useState<Article[]>(ARTICLES_ARRAY);
+    const addArticle = (newArticle: Article) => {
+        setArticles((prevArticles) => [...prevArticles, newArticle]);
+      };
+
 
     const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
@@ -87,6 +96,8 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
             url: enteredArticleLink,
             size: enteredSize,
         }
+
+        addArticle(articleData);
 
         console.log(articleData)
 
@@ -200,7 +211,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
 
                     <div className="flex flex-col gap-y-3">
                         <h2 className="font-bold md:text-lg lg:text-xl pt-6 w-52">Articles</h2>
-          
+                        <Articles articles={articles}/>
                     </div>
                     
                 </div>
