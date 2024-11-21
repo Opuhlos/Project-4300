@@ -27,7 +27,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
     const [selectedType, setType] = useState(null);
 
     const ARTICLES_ARRAY: Article[] = []
-    const [articles, setArticles] = useState<Article[]>(ARTICLES_ARRAY);
+    const [aarticles, setArticles] = useState<Article[]>(ARTICLES_ARRAY);
     const addArticle = (newArticle: Article) => {
         setArticles((prevArticles) => [...prevArticles, newArticle]);
       };
@@ -63,6 +63,11 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
+
+        if (!enteredTitle.trim() || !enteredLink.trim()) {
+            alert("To create an outfit, it must have an outfit name and image!");
+            return;
+        }
         
         const itemData = {
             title: enteredTitle,
@@ -70,15 +75,17 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
             image: enteredLink,
             name: userName,
             email: userEmail,
-            articles: []
+            articles: aarticles,
         }; 
         onSaveItemData(itemData)
         // Clear the form inputs after capturing the data entered
         setTitle('');
         setLink('');
+        setType(null);
         setDescription('');
         setArticleName('');
         setArticleLink('');
+        setArticles([]);
     };
 
     const articleHandler = (event: FormEvent) => {
@@ -211,7 +218,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
 
                     <div className="flex flex-col gap-y-3">
                         <h2 className="font-bold md:text-lg lg:text-xl pt-6 w-52">Articles</h2>
-                        <Articles articles={articles}/>
+                        <Articles articles={aarticles}/>
                     </div>
                     
                 </div>
