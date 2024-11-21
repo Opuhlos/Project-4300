@@ -37,13 +37,18 @@ export const article_types = [
 ]
 
 export interface Article {
+    key: string;
     type: string;
     name: string;
     url: string;
     size: string;
 }
 
-function Article({type, url, name, size}: Article) {
+export interface ArticleAble {
+    isDeletable: boolean;
+}
+
+function Article({type, url, name, size}: Article, {isDeletable}:ArticleAble) {
     return(
         <div className="flex gap-5 pt-4">
             <Image className="h-fit w-fit rounded-full" src={'/images/articles/' + type + '.jpg'} width={60} height={60} alt="Thumbnail of clothing type"/>
@@ -63,7 +68,7 @@ export default function Articles({articles}:ArticlesProp) {
     return(
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto mb-6">
             {/* very scuffed key method */}
-            {articles.map((article) => <Article key={article.name + article.type + article.url} name={article.name} type={article.type} url={article.url} size={article.size} />)}
+            {articles.map((article) => <Article key={article.key} name={article.name} type={article.type} url={article.url} size={article.size} />)}
         </div>
     );
 }

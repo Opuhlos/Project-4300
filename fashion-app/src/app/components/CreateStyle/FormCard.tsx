@@ -30,8 +30,13 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
     const [aarticles, setArticles] = useState<Article[]>(ARTICLES_ARRAY);
     const addArticle = (newArticle: Article) => {
         setArticles((prevArticles) => [...prevArticles, newArticle]);
-      };
+    };
 
+    // Removes the article we want by only filtering for articles w/o the deleted article's key
+    const removeArticle = (deleteArticle: Article) => {
+        const filtered:Article[] = aarticles.filter( (a:Article) => a.key != deleteArticle.key )
+        setArticles(filtered);
+    }
 
     const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
@@ -64,8 +69,8 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
 
-        if (!enteredTitle.trim() || !enteredLink.trim()) {
-            alert("To create an outfit, it must have an outfit name and image!");
+        if (!enteredTitle.trim() || !enteredDescription.trim() || !enteredLink.trim()) {
+            alert("To create an outfit, it must have an outfit name, description, and image link!");
             return;
         }
         
@@ -98,6 +103,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
         }
 
         const articleData = {
+            key: enteredArticleName + enteredArticleLink + enteredSize,
             type: selectedType.value,
             name: enteredArticleName,
             url: enteredArticleLink,
@@ -105,8 +111,6 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
         }
 
         addArticle(articleData);
-
-        console.log(articleData)
 
         setType(null);
         setArticleName('');
@@ -222,14 +226,10 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                     </div>
                     
                 </div>
-
-
-                
-
             </form>
             
             {/* BUTTON THAT UPLOADS THE STYLE */}
-            <Button label={"Create"} styles={"m-auto bg-orange text-xl w-2/4 px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={submitHandler} />
+            <Button label={"Create"} styles={"m-auto bg-orange text-xl px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={submitHandler} />
         </div>
 
     );
