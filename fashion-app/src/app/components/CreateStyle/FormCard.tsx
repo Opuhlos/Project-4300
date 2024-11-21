@@ -17,6 +17,8 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
     const [enteredTitle, setTitle] = useState<string>('');
     const [enteredDescription, setDescription] = useState<string>('');
     const [enteredLink, setLink] = useState<string>('');
+    const [enteredArticleName, setArticleName] = useState<string>('');
+    const [enteredArticleLinuk, setArticleLink] = useState<string>('');
 
     const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
@@ -28,6 +30,14 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
 
     const handleLinkChange = (event: ChangeEvent<HTMLInputElement>) => {
         setLink(event.target.value);
+    };
+
+    const handleArticleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setArticleName(event.target.value);
+    };
+
+    const handleArticleLinkChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setArticleLink(event.target.value);
     };
 
     const submitHandler = (event: FormEvent) => {
@@ -46,6 +56,8 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
         setTitle('');
         setLink('');
         setDescription('');
+        setArticleName('');
+        setArticleLink('');
     };
 
     return(
@@ -91,7 +103,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                 <div className="h-1/1 my-4 border-r-2 border-cardGray"></div>
 
                 {/* ARTICLES */}
-                <div className="p-4 flex flex-col gap-y-3">
+                <form className="p-4 flex flex-col gap-y-3">
 
                     <div className="flex flex-col gap-y-3">
                         <h2 className="font-bold md:text-lg lg:text-xl pt-6">Article Type</h2>
@@ -104,8 +116,8 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                         id="articleName"
                         type="text"
                         placeholder="Name the article"
-                        // value={enteredLink}
-                        // onChange={handleLinkChange}
+                        value={enteredArticleName}
+                        onChange={handleArticleNameChange}
                         required
                     />
                     </div>
@@ -116,8 +128,8 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                         id="articleLink"
                         type="text"
                         placeholder="Enter the article link"
-                        // value={enteredLink}
-                        // onChange={handleLinkChange}
+                        value={enteredArticleLinuk}
+                        onChange={handleArticleLinkChange}
                         required
                     />
                     </div>
@@ -126,7 +138,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                         <Button label={"Add Article"} styles={"bg-orange text-xl w-full py-3 hover:bg-dark hover:text-white"} children={""} handleClick={submitHandler} />
                     </div>
                     
-                </div>
+                </form>
 
                 <div className="h-1/1 my-4 border-r-2 border-cardGray"></div>
 
