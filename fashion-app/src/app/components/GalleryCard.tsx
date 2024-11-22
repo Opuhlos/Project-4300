@@ -16,7 +16,6 @@ interface ProfileProps {
     width: string;
 }
 
-
 interface RegularCardProps {
     item: IItem;
     isProfilePage: boolean; 
@@ -53,6 +52,9 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
         } 
         document.addEventListener("mousedown", handler)
     });
+
+    // SImply need to pass a dummy handle delete function to Detailed View which contains the article component
+    const dummy = (dummy: String) => {}
 
     const areaRef = useRef<HTMLDivElement>(null);
     
@@ -124,7 +126,7 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
 
             {isDetailedViewOpen && 
             <PopUpContainer 
-                children={<div className="" ref={areaRef}> <DetailedView item={item} isViewOpen={isDetailedViewOpen} setViewOpen={setDetailedViewOpen}/> </div>} 
+                children={<div className="" ref={areaRef}> <DetailedView dummy={dummy} item={item} isViewOpen={isDetailedViewOpen} setViewOpen={setDetailedViewOpen}/> </div>} 
             />}  
         </div>
         
