@@ -2,6 +2,8 @@ import { IItem } from '@/models/itemSchema';
 import Button from "./Button";
 import { grotesk } from "./Fonts";
 import { useRouter } from 'next/navigation';
+import Articles from './Articles';
+import { Article } from './Articles';
 
 import { useState, ChangeEvent, FormEvent } from 'react';
 
@@ -23,6 +25,15 @@ export default function EditForm( {item, setFormOpen, isFormOpen}:ItemFormProps,
         setDescription(event.target.value);
     };
 
+    const ARTICLES_ARRAY: Article[] = item.articles;
+    const [aarticles, setArticles] = useState<Article[]>(ARTICLES_ARRAY);
+
+    // Removes the article we want by only filtering for articles w/o the deleted article's key
+    const removeArticle = (deleteArticleKey: String) => {
+        const filtered:Article[] = aarticles.filter( (a:Article) => String(a.articleKey) !== String(deleteArticleKey) )
+        setArticles(filtered);
+    }
+
     const router = useRouter();
     const submitHandler = async (event: FormEvent) => {
         event.preventDefault();
@@ -30,7 +41,7 @@ export default function EditForm( {item, setFormOpen, isFormOpen}:ItemFormProps,
         try {
             const updatedData = {
                 title: enteredTitle,
-                description: enteredDescription
+                description: enteredDescription,
             }
             const response = await fetch(`api/items/${item._id}`, {
                 method: 'PUT',
@@ -50,16 +61,11 @@ export default function EditForm( {item, setFormOpen, isFormOpen}:ItemFormProps,
         }
     };
 
-
-
-
-
-
     return(
         <div className="flex flex-col gap-y-3">
             <div className="flex flex-row h-[480px]">
                 <img className="w-[359.3px]  object-cover rounded-l-md" src={item.image} alt="Place Holder Image"/> 
-                <form onSubmit={submitHandler} className={`${grotesk.className} px-4 w-96 flex flex-col gap-3 rounded-r-md shadow-md overflow-hidden bg-white`}>                
+                <form onSubmit={submitHandler} className={`${grotesk.className} px-4 w-96 flex flex-col gap-3 rounded-r-md shadow-md bg-white`}>                
                  
                     <div className="flex flex-col gap-y-2">
                         <h2 className="font-bold md:text-lg lg:text-xl pt-6">Outfit Name</h2>
@@ -81,7 +87,10 @@ export default function EditForm( {item, setFormOpen, isFormOpen}:ItemFormProps,
                             onChange={handleDescriptionChange}
                             required
                         />
-                 
+
+                        <div className="flex flex-col gap-y-3 h-[220px] overflow-y-auto pt-3">
+                            <Articles isDeletable={true} handleDelete={removeArticle} articles={aarticles}/>
+                        </div>
 
                     </div>
                 </form>

@@ -59,8 +59,7 @@ function Article({type, url, name, size, articleKey, isDeletable, handleDelete}:
                 </div>
             </div>
 
-            {isDeletable && <div className="flex flex-row items-center"> <div className="bg-white w-3"></div> <button className="border-none rounded-full bg-deleteRed hover:bg-dark h-[31px] w-[31px]" onClick={() => handleDelete(articleKey)}> <DeleteSVG /> </button> <div className="bg-white w-3"></div>  </div>} 
-            
+            {isDeletable && <div className="flex flex-row items-center"> <div className="bg-white w-3"></div> <button className="border-none rounded-full bg-deleteRed hover:bg-dark h-[31px] w-[31px]" onClick={() => handleDelete(articleKey)}> <DeleteSVG /> </button> <div className="bg-white w-3"></div>  </div>}      
 
         </div>
     );
