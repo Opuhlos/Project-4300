@@ -163,7 +163,7 @@ export default function EditForm( {item, setFormOpen, isFormOpen}:ItemFormProps,
             {/* ARTICLES CREATION FORM */}
             <form className="flex flex-col gap-y-3">
 
-                <div className="bg-white h-[480px] rounded-md p-4 flex flex-col gap-y-3">
+                <div className="bg-white h-[480px] rounded-md px-4 flex flex-col gap-y-3">
                     <div className="flex flex-row justify-between">
                         <div className="flex flex-col gap-y-3">
                             <h2 className="font-bold md:text-lg lg:text-xl pt-6">Article Type</h2>
