@@ -6,6 +6,14 @@ interface ItemFormProps {
     item: IItem;
     isViewOpen: boolean;
     setViewOpen: React.Dispatch<React.SetStateAction<boolean>>;
+
+    // temp
+    handleDelete: (enteredArticleKey: String) => void;
+}
+
+// temp
+const removeArticle = (deleteArticleKey: String) => {
+    console.log("temp")
 }
 
 export default function EditForm( {item }:ItemFormProps,  ) {
@@ -25,7 +33,8 @@ export default function EditForm( {item }:ItemFormProps,  ) {
                             <p className="mb-6 overflow-y-auto max-h-24">{item.description} </p>
                         </div>
                         
-                        {/* <Articles handleDelete={} isDeletable={false} articles={item.articles}/> */}
+                        {/* remove article temporary, functionlaity not implemented yet */}
+                        <Articles handleDelete={removeArticle} isDeletable={false} articles={item.articles}/>
                     
                     </div>
                 </div>

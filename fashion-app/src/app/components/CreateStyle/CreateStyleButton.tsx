@@ -38,6 +38,7 @@ export default function CreateStyleButton({ userEmail, userName } : CreateStyleB
     const router = useRouter();
     // Handler for posting items
     const OnSubmit = async (newItem:IItemData) => {
+        console.log(newItem.articles)
         try {
             const response = await fetch('/api/items', {
                 method: 'POST',

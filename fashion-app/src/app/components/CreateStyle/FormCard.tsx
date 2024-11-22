@@ -104,6 +104,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
         }
 
         const articleData = {
+            key: String(enteredArticleName + enteredArticleLink + enteredSize),
             articleKey: String(enteredArticleName + enteredArticleLink + enteredSize),
             type: selectedType.value,
             name: enteredArticleName,
