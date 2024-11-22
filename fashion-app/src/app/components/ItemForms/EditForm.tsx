@@ -1,13 +1,13 @@
 import { IItem } from '@/models/itemSchema';
-import Button from "./Button";
-import { grotesk } from "./Fonts";
+import Button from "../Button";
+import { grotesk } from "../Fonts";
 import { useRouter } from 'next/navigation';
-import Articles from './Articles';
-import { Article } from './Articles';
+import Articles from '../Articles';
+import { Article } from '../Articles';
 
 import Select from 'react-select';
-import { article_type_dropdown_styles } from './Articles';
-import { article_types } from './Articles';
+import { article_type_dropdown_styles } from '../Articles';
+import { article_types } from '../Articles';
 
 import { useState, ChangeEvent, FormEvent } from 'react';
 
@@ -161,55 +161,56 @@ export default function EditForm( {item, setFormOpen, isFormOpen}:ItemFormProps,
             </div>   
        
             {/* ARTICLES CREATION FORM */}
-            <form className="bg-white h-[480px] rounded-md p-4 flex flex-col gap-y-3">
+            <form className="flex flex-col gap-y-3">
 
-                <div className="flex flex-row justify-between">
-                    <div className="flex flex-col gap-y-3">
-                        <h2 className="font-bold md:text-lg lg:text-xl pt-6">Article Type</h2>
-                        <Select required styles={article_type_dropdown_styles} value={selectedType} options={article_types} onChange={handleTypeChange}/>
+                <div className="bg-white h-[480px] rounded-md p-4 flex flex-col gap-y-3">
+                    <div className="flex flex-row justify-between">
+                        <div className="flex flex-col gap-y-3">
+                            <h2 className="font-bold md:text-lg lg:text-xl pt-6">Article Type</h2>
+                            <Select required styles={article_type_dropdown_styles} value={selectedType} options={article_types} onChange={handleTypeChange}/>
+                        </div>
+
+                        <div className="flex flex-col gap-y-3 max-w-12">
+                            <h2 className="font-bold md:text-lg lg:text-xl pt-6">Size</h2>
+                            <input className="transition duration-300 hover:border-darkerOrange p-2 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+                            id="articleName"
+                            type="text"
+                            placeholder="Size"
+                            value={enteredSize}
+                            onChange={handleSizeChange}
+                            required
+                            />
+                        </div>
                     </div>
 
-                    <div className="flex flex-col gap-y-3 max-w-16">
-                        <h2 className="font-bold md:text-lg lg:text-xl pt-6">Size</h2>
-                        <input className="transition duration-300 hover:border-darkerOrange p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+
+                    <div className="flex flex-col gap-y-3">
+                        <h2 className="font-bold md:text-lg lg:text-xl">Name</h2>
+                        <input className="transition duration-300 hover:border-darkerOrange  p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
                         id="articleName"
                         type="text"
-                        placeholder="Size"
-                        value={enteredSize}
-                        onChange={handleSizeChange}
+                        placeholder="Name the article"
+                        value={enteredArticleName}
+                        onChange={handleArticleNameChange}
                         required
-                        />
+                    />
+                    </div>
+
+                    <div className="flex flex-col gap-y-3">
+                        <h2 className="font-bold md:text-lg lg:text-xl">Article Link</h2>
+                        <input className="transition duration-300 hover:border-darkerOrange  p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
+                        id="articleLink"
+                        type="text"
+                        placeholder="Enter the article link"
+                        value={enteredArticleLink}
+                        onChange={handleArticleLinkChange}
+                        required
+                    />
                     </div>
                 </div>
 
-
-                <div className="flex flex-col gap-y-3">
-                    <h2 className="font-bold md:text-lg lg:text-xl">Name</h2>
-                    <input className="transition duration-300 hover:border-darkerOrange  p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
-                    id="articleName"
-                    type="text"
-                    placeholder="Name the article"
-                    value={enteredArticleName}
-                    onChange={handleArticleNameChange}
-                    required
-                />
-                </div>
-
-                <div className="flex flex-col gap-y-3">
-                    <h2 className="font-bold md:text-lg lg:text-xl">Article Link</h2>
-                    <input className="transition duration-300 hover:border-darkerOrange  p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
-                    id="articleLink"
-                    type="text"
-                    placeholder="Enter the article link"
-                    value={enteredArticleLink}
-                    onChange={handleArticleLinkChange}
-                    required
-                />
-                </div>
-
-                <div className="h-full flex place-items-end mb-6">
-                    <Button label={"Add Article"} styles={"bg-orange text-xl w-full py-3 hover:bg-dark hover:text-white"} children={""} handleClick={articleHandler} />
-                </div>
+                <Button label={"Add Article"} styles={"m-auto bg-orange text-xl w-50 px-[35px] py-[20px] hover:bg-dark hover:text-white"} children={""} handleClick={articleHandler} />
+ 
 
                 </form>
        

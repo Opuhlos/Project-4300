@@ -10,9 +10,9 @@ interface RouteParams {
 // updating an item by id
 export async function PUT(request: NextRequest, { params }: RouteParams) {
     const {id} = params;
-    const { title: title, description: description} = await request.json();
+    const { title: title, description: description, articles: articles} = await request.json();
     await connectMongoDB(); 
-    await Item.findByIdAndUpdate(id, {title, description});
+    await Item.findByIdAndUpdate(id, {title, description, articles});
     return NextResponse.json({ message: "Item Updated"}, { status: 200 });
 }
 

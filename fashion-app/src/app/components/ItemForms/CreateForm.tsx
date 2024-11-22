@@ -1,5 +1,4 @@
 
-import Image from "next/image";
 import Button from "../Button";
 import { grotesk } from "../Fonts";
 import { IItemData } from "@/models/itemSchema";
@@ -17,10 +16,11 @@ interface ItemFormProps {
     userName: string;
 }
 
-export default function FormCard( {onSaveItemData, userEmail, userName}:ItemFormProps ) {
+export default function CreateForm( {onSaveItemData, userEmail, userName}:ItemFormProps ) {
     const [enteredTitle, setTitle] = useState<string>('');
     const [enteredDescription, setDescription] = useState<string>('');
     const [enteredLink, setLink] = useState<string>('');
+    
     const [enteredArticleName, setArticleName] = useState<string>('');
     const [enteredArticleLink, setArticleLink] = useState<string>('');
     const [enteredSize, setSize] = useState<string>('');

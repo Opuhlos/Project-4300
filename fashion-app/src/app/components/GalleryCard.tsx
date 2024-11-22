@@ -6,21 +6,13 @@ import DeleteSVG from "./svg/DeleteSVG";
 import { IItem } from '@/models/itemSchema';
 import PopUpContainer from "./PopUpContainer";
 import { useState, useEffect, useRef } from "react";
-import EditForm from "./EditForm";
+import EditForm from "./ItemForms/EditForm";
 import DetailedView from "./DetailedView";
-
-interface ProfileProps {
-    image: string;
-    alt: string;
-    height: string;
-    width: string;
-}
 
 interface RegularCardProps {
     item: IItem;
     isProfilePage: boolean; 
 }
-
 
 export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
     // Opening form Logic
@@ -126,7 +118,7 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
 
             {isDetailedViewOpen && 
             <PopUpContainer 
-                children={<div className="" ref={areaRef}> <DetailedView dummy={dummy} item={item} isViewOpen={isDetailedViewOpen} setViewOpen={setDetailedViewOpen}/> </div>} 
+                children={<div className="" ref={areaRef}> <DetailedView dummy={dummy} item={item}/> </div>} 
             />}  
         </div>
         

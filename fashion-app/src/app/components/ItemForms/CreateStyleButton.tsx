@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useRef } from "react";
 import { IItemData } from "@/models/itemSchema";
 import Button from "../Button";
-import { ReactNode } from 'react';
-import FormCard from "./FormCard";
+import CreateForm from "./CreateForm";
 import { useRouter } from "next/navigation";
 import PopUpContainer from "../PopUpContainer";
 import { Session } from "next-auth";
@@ -63,7 +62,7 @@ export default function CreateStyleButton({ userEmail, userName } : CreateStyleB
 
             {isFormOpen && 
             <PopUpContainer 
-                children={<div className="" ref={areaRef}> <FormCard onSaveItemData={OnSubmit} userEmail={userEmail} userName={userName} /> </div>} 
+                children={<div className="" ref={areaRef}> <CreateForm onSaveItemData={OnSubmit} userEmail={userEmail} userName={userName} /> </div>} 
             />}    
         </div>
     );
