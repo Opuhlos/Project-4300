@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useRef } from "react";
 import { IItemData } from "@/models/itemSchema";
 import Button from "../Button";
-import { ReactNode } from 'react';
-import FormCard from "./FormCard";
+import CreateForm from "./CreateForm";
 import { useRouter } from "next/navigation";
 import PopUpContainer from "../PopUpContainer";
 import { Session } from "next-auth";
@@ -16,10 +15,6 @@ interface CreateStyleButtonProps {
 
 export default function CreateStyleButton({ userEmail, userName } : CreateStyleButtonProps) {
     const [isFormOpen, setFormOpen] = useState(false);
-
-    console.log("In create button")
-    console.log(userEmail);
-    console.log(userName);
 
     const handleCreateAStyleClick = () => {
         setFormOpen(isFormOpen => !isFormOpen)
@@ -42,6 +37,7 @@ export default function CreateStyleButton({ userEmail, userName } : CreateStyleB
     const router = useRouter();
     // Handler for posting items
     const OnSubmit = async (newItem:IItemData) => {
+        console.log(newItem.articles)
         try {
             const response = await fetch('/api/items', {
                 method: 'POST',
@@ -66,7 +62,7 @@ export default function CreateStyleButton({ userEmail, userName } : CreateStyleB
 
             {isFormOpen && 
             <PopUpContainer 
-                children={<div className="" ref={areaRef}> <FormCard onSaveItemData={OnSubmit} userEmail={userEmail} userName={userName} /> </div>} 
+                children={<div className="" ref={areaRef}> <CreateForm onSaveItemData={OnSubmit} userEmail={userEmail} userName={userName} /> </div>} 
             />}    
         </div>
     );

@@ -25,7 +25,7 @@ export default function SplashInfo() {
                     the look
                 </p>
 
-                <p className='md:text-xl'>Our selection of user curated pieces offers trendy outfits for your day-to-day with links to where to buy for your convenience. Fill out your profile to select your unique tags today!</p>
+                <p className='md:text-xl'>Our selection of user curated pieces offers trendy outfits for your day-to-day with links to where to buy for your convenience.</p>
 
                 <Button label={"Find your style"} styles={"sm:visibility:hidden lg:visibility:visible text-xl px-3 py-5 bg-dark text-white hover:bg-darkerOrange w-56"} children={""} handleClick={handleFindYourStyleClick} />
             </div>

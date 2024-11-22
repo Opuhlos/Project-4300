@@ -1,84 +1,35 @@
 import { IItem } from '@/models/itemSchema';
-import Button from "./Button";
+import Articles from './Articles';
 import { grotesk } from "./Fonts";
-import { useRouter } from 'next/navigation';
-
-import { useState, ChangeEvent, FormEvent } from 'react';
 
 interface ItemFormProps {
     item: IItem;
-    isViewOpen: boolean;
-    setViewOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    // dummy to satisfy article component
+    dummy: (dummy: String) => void;
 }
 
-export default function EditForm( {item, setViewOpen, isViewOpen}:ItemFormProps,  ) {
-    const [enteredTitle, setTitle] = useState<string>(item.title);
-    const [enteredDescription, setDescription] = useState<string>(item.description);
-
-    const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setTitle(event.target.value);
-    };
-
-    const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        setDescription(event.target.value);
-    };
-
-    const router = useRouter();
-    const submitHandler = async (event: FormEvent) => {
-        event.preventDefault();
-
-        try {
-            const updatedData = {
-                title: enteredTitle,
-                description: enteredDescription
-            }
-            const response = await fetch(`api/items/${item._id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedData)
-            })
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok')
-            }
-            setViewOpen(isViewOpen => !isViewOpen);
-            router.refresh();
-        } catch (error) {
-            console.log('Error from EditForm');
-        }
-    };
-
-
-
-
-
+export default function DeatiledView( {item, dummy }:ItemFormProps,  ) {
 
     return(
-        // 
-
-            <div className="flex flex-row w-full">
+            <div className="flex flex-row h-[480px]">
                 <img className="w-[359.3px] object-cover rounded-l-md" src={item.image} alt="Style Image"/> 
 
-                <div className={`${grotesk.className}  flex flex-col gap-3 rounded-r-md shadow-md overflow-hidden bg-white`}>                
-                    <div className="p-4">
+                <div className={`${grotesk.className} px-4 w-96 flex flex-col gap-3 rounded-r-md shadow-md  bg-white`}>                
+                    <div className="flex flex-col h-full">
 
-                        <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">{item.title}</h2>
-
-                        <div className="flex flex-col gap-2 lg:pb-6">
-                            <h2 className="font-bold md:text-lg lg:text-xl lg:pt-6">Description</h2>
-
-                            <textarea disabled className="w-11/12 h-40 p-2 pl-4 border-2 resize-none border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
-                                id="description"
-                                value={enteredDescription}
-                            />
+                        <div>
+                            <h2 className="font-bold md:text-lg lg:text-xl pt-6">{item.title}</h2>
+                            <p className="font-normal text-md font-cardGrey" >{item.name}</p>
+                            <br></br>
+                            <h2 className="font-bold md:text-lg lg:text-">Description</h2>
+                            <p className="mb-6 overflow-y-auto max-h-24">{item.description} </p>
                         </div>
-
+                        
+                        {/* remove article temporary, functionlaity not implemented yet */}
+                        <Articles handleDelete={dummy} isDeletable={false} articles={item.articles}/>
+                    
                     </div>
                 </div>
             </div>
-
-
     );
 }
