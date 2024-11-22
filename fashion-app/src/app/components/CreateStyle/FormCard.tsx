@@ -121,7 +121,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
     }
 
     return(
-        <div className="flex flex-col gap-y-3">
+        <div className="flex flex-col gap-y-3 flex-0">
 
             <form onSubmit={submitHandler} className={`${grotesk.className} flex flex-row rounded-md shadow-md overflow-hidden bg-white`}>                
                 {/* OUTFIT NAME, LINK, and DESCRIPTOIN INPUT FORM */}
@@ -222,7 +222,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
                 {/* ARTICLE DISPLAY */}
                 <div className="p-4 flex flex-col gap-y-3">
 
-                    <div className="flex flex-col gap-y-3">
+                    <div className="flex flex-col gap-y-3 h-[420px] overflow-y-auto">
                         <h2 className="font-bold md:text-lg lg:text-xl pt-6 w-52">Articles</h2>
                         <Articles isDeletable={true} handleDelete={removeArticle} articles={aarticles}/>
                     </div>
