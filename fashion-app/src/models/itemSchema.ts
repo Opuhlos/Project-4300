@@ -39,7 +39,7 @@ const itemSchema = new Schema<IItem>(
         },
         articles: [
             {
-                key: { type: String, required: true},
+                articleKey: { type: String, required: true},
                 type: { type: String, required: true},
                 name: { type: String, required: true},
                 url: { type: String, required: true},

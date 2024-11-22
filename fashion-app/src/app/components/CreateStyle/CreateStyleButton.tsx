@@ -17,10 +17,6 @@ interface CreateStyleButtonProps {
 export default function CreateStyleButton({ userEmail, userName } : CreateStyleButtonProps) {
     const [isFormOpen, setFormOpen] = useState(false);
 
-    console.log("In create button")
-    console.log(userEmail);
-    console.log(userName);
-
     const handleCreateAStyleClick = () => {
         setFormOpen(isFormOpen => !isFormOpen)
     }

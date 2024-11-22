@@ -17,9 +17,6 @@ interface NavigationProps {
 
 export default function Navigation( {isHome, isLoggedIn, userEmail, userName}:NavigationProps ) {
     const router = useRouter();
-    console.log("In nav")
-    console.log(userEmail);
-    console.log(userName);
 
     const handleSignUpClick = () => {
         router.push('/signup');

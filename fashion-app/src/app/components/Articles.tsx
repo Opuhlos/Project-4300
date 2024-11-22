@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-
+import DeleteSVG from "./svg/DeleteSVG";
 export const article_type_dropdown_styles = {
     control: (base, state) => ({
       ...base,
@@ -27,7 +27,6 @@ export const article_type_dropdown_styles = {
     }),
   };
 
-
 export const article_types = [
     { value: 'hat', label: 'Hat' },
     { value: 'jacket', label: 'Jacket' },
@@ -36,39 +35,46 @@ export const article_types = [
     { value: 'shoes', label: 'Shoes' }
 ]
 
-export interface Article {
-    key: string;
+export interface Article extends ArticleFunctionalityProps {
+    articleKey: string;
     type: string;
     name: string;
     url: string;
     size: string;
 }
 
-export interface ArticleAble {
+export interface ArticleFunctionalityProps {
     isDeletable: boolean;
+    handleDelete: (enteredArticleKey: String) => void;
 }
 
-function Article({type, url, name, size}: Article, {isDeletable}:ArticleAble) {
+function Article({type, url, name, size, articleKey, isDeletable, handleDelete}: Article) {
     return(
-        <div className="flex gap-5 pt-4">
-            <Image className="h-fit w-fit rounded-full" src={'/images/articles/' + type + '.jpg'} width={60} height={60} alt="Thumbnail of clothing type"/>
-            <div className="rows-2 gap-y-1">
-                <Link target={"_blank"} className="hover:text-orange font-bold text-lg underline" href={url} >{name}</Link>
-                <p>Size {size}</p>
+        <div className="flex flex-row justify-between pt-4">
+            <div className="flex gap-5">
+                <Image className="h-fit w-fit rounded-full" src={'/images/articles/' + type + '.jpg'} width={60} height={60} alt="Thumbnail of clothing type"/>
+                <div className="rows-2 gap-y-1">
+                    <Link target={"_blank"} className="hover:text-orange font-bold text-lg underline" href={url} >{name}</Link>
+                    <p>Size {size}</p>
+                </div>
             </div>
+
+            {isDeletable && <div className="flex items-center"> <button className="border-none rounded-full bg-deleteRed hover:bg-dark h-[31px] w-[31px]" onClick={() => handleDelete(articleKey)}> <DeleteSVG /> </button> </div>} 
+            
+
         </div>
     );
 }
 
-interface ArticlesProp {
+interface ArticlesProp extends ArticleFunctionalityProps {
     articles: Article[];
 }
 
-export default function Articles({articles}:ArticlesProp) {
+export default function Articles({articles, isDeletable, handleDelete}:ArticlesProp) {
     return(
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto mb-6">
             {/* very scuffed key method */}
-            {articles.map((article) => <Article key={article.key} name={article.name} type={article.type} url={article.url} size={article.size} />)}
+            {articles.map((article) => <Article handleDelete={handleDelete} isDeletable={isDeletable} articleKey={String(article.name + article.url + article.size)} key={String(article.name + article.url + article.size)} name={article.name} type={article.type} url={article.url} size={article.size} />)}
         </div>
     );
 }

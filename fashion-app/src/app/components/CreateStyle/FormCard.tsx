@@ -30,11 +30,12 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
     const [aarticles, setArticles] = useState<Article[]>(ARTICLES_ARRAY);
     const addArticle = (newArticle: Article) => {
         setArticles((prevArticles) => [...prevArticles, newArticle]);
+        console.log(aarticles);
     };
 
     // Removes the article we want by only filtering for articles w/o the deleted article's key
-    const removeArticle = (deleteArticle: Article) => {
-        const filtered:Article[] = aarticles.filter( (a:Article) => a.key != deleteArticle.key )
+    const removeArticle = (deleteArticleKey: String) => {
+        const filtered:Article[] = aarticles.filter( (a:Article) => String(a.articleKey) !== String(deleteArticleKey) )
         setArticles(filtered);
     }
 
@@ -103,7 +104,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
         }
 
         const articleData = {
-            key: enteredArticleName + enteredArticleLink + enteredSize,
+            articleKey: String(enteredArticleName + enteredArticleLink + enteredSize),
             type: selectedType.value,
             name: enteredArticleName,
             url: enteredArticleLink,
@@ -222,7 +223,7 @@ export default function FormCard( {onSaveItemData, userEmail, userName}:ItemForm
 
                     <div className="flex flex-col gap-y-3">
                         <h2 className="font-bold md:text-lg lg:text-xl pt-6 w-52">Articles</h2>
-                        <Articles articles={aarticles}/>
+                        <Articles isDeletable={true} handleDelete={removeArticle} articles={aarticles}/>
                     </div>
                     
                 </div>
