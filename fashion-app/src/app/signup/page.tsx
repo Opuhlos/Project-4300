@@ -24,39 +24,44 @@ const Signup = async () => {
           <div className = "bg-astra rounded-3xl shadow-lg flex flex-row justify-center items-center w-1/2.5 border border-b-8 border-black ">
             <div className = {"flex flex-col items-center p-10"}>
               <StyleLink isHome={true}/>
-              <div className={"h-[229px] w-[252px] bg-black border border-hidden overflow-hidden my-10"}>
-                  <Image src={"/images/ExtraGroup.png"} alt="Dressing" width={252} height={229}/>
-              </div>
+              <div className = "flex flex-row">
+              <div className = "flex flex-col mt-10 mr-10">
               <form action={register}>
-                <div>
-                  <h3>First Name</h3>
+                <div> 
+                  <h3 className = {`${grotesk.className}font-medium text-lg` }>First Name</h3>
                   <Input id="name" placeholder="Yevone" type="text" name="name" />
-                  <h3>Last Name</h3>
+                  <h3 className = {`${grotesk.className} mt-5 font-medium text-lg` }>Last Name</h3>
                   <Input id="lastname" placeholder="Stein" type="text" name="lastname" />
                 </div>
-                <h3>Email Address</h3>
+                <h3 className = {`${grotesk.className} mt-5 font-medium text-lg` }>Email Address</h3>
                 <Input id="email" placeholder="yevone@gmail.com" type="email" name="email" />
 
-                <h3>Password</h3>
+                <h3 className = {`${grotesk.className} mt-5 font-medium text-lg` }>Password</h3>
                 <Input id="password" placeholder="**********" type="password" name="password" />
 
-                <button>Sign Up</button>
+                <button className="px-4 py-2 border flex gap-2 border-dark mt-5 rounded-lg text-slate-700 dark:text-slate-200 bg-dark dark:hover:bg-gray-700 hover:text-white transition duration-150">Sign Up</button>
 
               </form>
+              </div>
+              <div className = "flex flex-col">
+              <div className={"h-[229px] w-[252px] bg-black border border-hidden overflow-hidden my-20"}>
+                  <Image src={"/images/ExtraGroup.png"} alt="Dressing" width={252} height={229}/>
+              </div>
               <form
                 action={async () => {
                   "use server"
                   await signIn("google", { redirectTo: "/styles"})
                 }}>
-                <button className="px-4 py-2 border flex gap-2 border-dark  rounded-lg text-slate-700 dark:text-slate-200 bg-dark dark:hover:bg-gray-700 hover:text-white transition duration-150">
+                <button className="px-4 py-2 border flex gap-2 border-dark rounded-lg text-slate-700 dark:text-slate-200 bg-dark dark:hover:bg-gray-700 hover:text-white transition duration-150">
                   <Image className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy"  width={24} height={24} alt="google logo"></Image>
                   <span>Signup with Google</span>
                 </button>
               </form>
               <p>
-                Already have an account? <Link href="/login">Login</Link>
+                Already have an account? <Link className = "hover:text-orange transition duration-150" href="/login">Login</Link>
               </p>
-            
+              </div>
+              </div>
             </div>
           </div>
         </div>
