@@ -29,10 +29,15 @@ export const article_type_dropdown_styles = {
 
 export const article_types = [
     { value: 'hat', label: 'Hat' },
+    { value: 'jewlery', label: 'Jewlery'},
+    { value: 'dress', label: 'Dress'},
     { value: 'jacket', label: 'Jacket' },
     { value: 'shirt', label: 'Shirt' },
     { value: 'pants', label: 'Pants' },
-    { value: 'shoes', label: 'Shoes' }
+    { value: 'shorts', label: 'Shorts'},
+    { value: 'skirt', label: 'Skirt'},
+    { value: 'shoes', label: 'Shoes' },
+    { value: 'boots', label: 'Boots'}
 ]
 
 export interface Article extends ArticleFunctionalityProps {
