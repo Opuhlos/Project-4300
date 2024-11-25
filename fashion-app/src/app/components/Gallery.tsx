@@ -68,11 +68,13 @@ export default function Gallery({ isProfilePage, items }: GalleryProps) {
         // The specific pr specification is necessary for the auto gap calculation to work! Moreover, that same number must be supplied
         // in the calculation
         <div ref={galleryRef} style={gridStyle} className={`gap-y-5 pr-[8px] flex-1 -auto grid grid-cols-[repeat(auto-fit,_359.3px)] `}>
-            {
+            {items && items.items ? (
                 items.items.map( item => (
                     <GalleryCard isProfilePage={isProfilePage} item={item} key={item._id.toString()}></GalleryCard>
                 ))
-            }
+            ) : (
+                <p>No items available</p> // Display a message if items is undefined or empty
+            )}
             
 
         </div>

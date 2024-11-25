@@ -1,12 +1,21 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Button from './Button';
 import FilterSVG from './svg/FilterSVG';
 import OrangeBlockSVG from './svg/OrangeBlockSVG';
 import SearchSVG from './svg/SearchSVG';
 
-export default function SearchBar() {
+interface SearchBarProps {
+  onSearch: (query: string) => void;
+  // Passed on prop to handle search
+}
+
+export default function SearchBar({ onSearch }: SearchBarProps) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const handleSearchClick = () => {
+    onSearch(searchQuery);
+  };
   return (
     <div className="relative flex items-center space-x-4">
       {/* Search Input with Orange Block on Right */}
@@ -14,6 +23,8 @@ export default function SearchBar() {
         <input
           type="text"
           placeholder="Search"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
           className="search-input w-full h-9 px-4 pr-16 text-gray-700 placeholder-gray-600 rounded-2xl"
         />
 
@@ -26,7 +37,7 @@ export default function SearchBar() {
           <Button
             label=""
             styles="absolute inset-0 flex items-center justify-center border-none"
-            handleClick={() => console.log('Search button clicked')}
+            handleClick={handleSearchClick}
           >
             <SearchSVG />
           </Button>

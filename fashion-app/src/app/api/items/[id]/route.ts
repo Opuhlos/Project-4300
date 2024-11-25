@@ -1,5 +1,6 @@
 import connectMongoDB from "@/libs/mongodb";
 import Item from "@/models/itemSchema";
+import { connect } from "http2";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -23,4 +24,6 @@ export async function GET(request:NextRequest, { params }: RouteParams) {
     const item = await Item.findOne({ _id: id });
     return NextResponse.json({ item }, { status: 200});
 }
+
+
 

@@ -1,17 +1,18 @@
+import React, { useEffect, useState } from "react";
 import Navigation from "../components/Navigation";
 import PageHeader from "../components/PageHeader";
 import Gallery from "../components/Gallery";
 import { getSession } from "@/libs/getSession";
 
-const getItems = async () => {
+const getItems = async (query = "") => {
   try {
-    const response = await fetch("http://localhost:3000/api/items", {
+    const url = query ? `http://localhost:3000/api/items?q=${query}` : "http://localhost:3000/api/items";
+    const response = await fetch(url, {
       cache: "no-store"
     })
 
     return response.json();
   } catch (error) {
-
     console.log("Failed to get items", error)
   }
 }
@@ -28,13 +29,12 @@ export default async function Home() {
     console.log(userName);
     //if(!userEmail || !userName) throw new Error("No user Email")
     
-    
     const items = await getItems();
 
     return (
       <div className="flex flex-col h-screen overflow-hidden">
         <Navigation isHome={false} isLoggedIn={isIn} userEmail={userEmail} userName={userName}/>
-        <PageHeader header="Styles"/>
+        <PageHeader header="Styles" initialItems={items} />
 
         <div className="overflow-y-auto mx-5 ">
           <Gallery isProfilePage={false} items={items}/>
