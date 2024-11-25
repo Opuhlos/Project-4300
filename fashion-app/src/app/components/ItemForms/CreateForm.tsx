@@ -175,7 +175,7 @@ export default function CreateForm( {onSaveItemData, userEmail, userName}:ItemFo
                         <div className="flex flex-col gap-y-3 max-w-16">
                             <h2 className="font-bold md:text-lg lg:text-xl pt-6">Size</h2>
                             <input className="transition duration-300 hover:border-darkerOrange p-2 pl-4 border-2 border-cardGrey rounded-lg text-base focus:outline-none focus:border-darkerOrange"
-                            id="articleName"
+                            id="articleSize"
                             type="text"
                             placeholder="Size"
                             value={enteredSize}

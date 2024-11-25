@@ -7,6 +7,7 @@ import HangerSVG from "./svg/HangerSVG";
 import LogOutSVG from "./svg/LogOutSVG";
 import ProfileIcon from "./ProfileIcon";
 import IconButton from "./IconButton";
+import { signOut } from "next-auth/react"
 
 
 interface ProfileSidebarProps {
@@ -20,8 +21,7 @@ export default function ProfileSidebar({ image, alt, username, stylesCount }:Pro
   const router = useRouter();
 
   const handleLogout = () => {
-      router.push('/')
-      alert("Logging out it not yet implemented. But the button and redirection works!")
+    signOut({ redirectTo: "/" })
   }
 
   return (
@@ -50,7 +50,8 @@ export default function ProfileSidebar({ image, alt, username, stylesCount }:Pro
         >
             <HangerSVG/> 
             <span style={{ color: "#FFA216", fontWeight: "500", marginLeft: "6px", marginRight: "4px" }}>{stylesCount}</span>
-            <span style={{ color: "black", fontWeight: "300" }}>Styles</span>
+            
+            {stylesCount == 1 ? <span style={{ color: "black", fontWeight: "300" }}>Style</span> :  <span style={{ color: "black", fontWeight: "300" }}>Styles</span>}
         </p>
 
       {/* Logout Button */}

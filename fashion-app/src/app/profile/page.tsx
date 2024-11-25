@@ -30,14 +30,11 @@ export default async function Profile() {
   const session = await getSession();
   const user = session?.user;
   if(!user) return redirect("/login");
-  console.log(user);
   // Checks if the usr is logged in to display proper nav
   const isIn = user ? true : false;
   const userEmail = user?.email;
   const userName = user?.name;
   if(!userEmail || !userName) throw new Error("Email or Name null")
-  console.log(userEmail);
-  console.log(userName);
 
   const items = await getUserItems();
 
@@ -48,7 +45,7 @@ export default async function Profile() {
       
       <div className="flex flex-row flex-1 overflow-hidden mx-5">
           {/* Sidebar on the left */}
-          <ProfileSidebar image="/images/Naruto.jpg" alt="Profile Picture" username="Username" stylesCount={109}/>
+          <ProfileSidebar image="/images/Naruto.jpg" alt="Profile Picture" username={userName} stylesCount={items.items.length}/>
 
           {/* Gallery on the right */}
           <div className="flex-1 overflow-y-auto">
