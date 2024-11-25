@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation'
 import StyleLink from './StyleLink';
 import NavigationLink from './NavigationLink';
 import Button from './Button';
-import CreateStyleButton from './CreateStyle/CreateStyleButton';
 import ProfileMenu from './ProfileMenu';
+import CreateStyleButton from './ItemForms/CreateStyleButton';
 
 interface NavigationProps {
     isHome: boolean;
@@ -17,9 +17,6 @@ interface NavigationProps {
 
 export default function Navigation( {isHome, isLoggedIn, userEmail, userName}:NavigationProps ) {
     const router = useRouter();
-    console.log("In nav")
-    console.log(userEmail);
-    console.log(userName);
 
     const handleSignUpClick = () => {
         router.push('/signup');

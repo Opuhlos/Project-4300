@@ -5,9 +5,9 @@ import { NextRequest } from "next/server";
 
 // Creating the items
 export async function POST(request: NextRequest) {
-    const { title, description, image, email, name } = await request.json();
+    const { title, description, image, email, name, articles } = await request.json();
     await connectMongoDB();
-    await Item.create({ title, description, image, email, name});
+    await Item.create({ title, description, image, email, name, articles});
     return NextResponse.json({ message: "Item added successfully" }, {status: 201})
 }
 

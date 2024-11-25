@@ -6,22 +6,13 @@ import DeleteSVG from "./svg/DeleteSVG";
 import { IItem } from '@/models/itemSchema';
 import PopUpContainer from "./PopUpContainer";
 import { useState, useEffect, useRef } from "react";
-import EditForm from "./EditForm";
+import EditForm from "./ItemForms/EditForm";
 import DetailedView from "./DetailedView";
-
-interface ProfileProps {
-    image: string;
-    alt: string;
-    height: string;
-    width: string;
-}
-
 
 interface RegularCardProps {
     item: IItem;
     isProfilePage: boolean; 
 }
-
 
 export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
     // Opening form Logic
@@ -54,6 +45,9 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
         document.addEventListener("mousedown", handler)
     });
 
+    // SImply need to pass a dummy handle delete function to Detailed View which contains the article component
+    const dummy = (dummy: String) => {}
+
     const areaRef = useRef<HTMLDivElement>(null);
     
     // Delete logic
@@ -72,7 +66,15 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
         }
     };
 
+    // either returns the description or if its too long, shorten it and concat ... for gallery display
+    const truncateText = (text:string) => {
+        const limit = 35;
+        const words = text.slice(0,limit);
+        return text.length > words.length ? words + '. . .' : text;
+      };
+
     return(
+
         // Temp grid for testing
         <div className="grid grid-cols-1 justify-items-center max-w-[359.3px]">
 
@@ -103,7 +105,7 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
                     <hr className="border-cardGrey m-0 mt-2 mb-2"/>
 
                     {/* Description */}
-                    <p className={"text-left"}>{item.description}</p>
+                    <p className={"text-left"}>{truncateText(item.description)}</p>
 
                 </div>    
             </div>
@@ -116,7 +118,7 @@ export default function RegularCard({ isProfilePage, item }: RegularCardProps) {
 
             {isDetailedViewOpen && 
             <PopUpContainer 
-                children={<div className="" ref={areaRef}> <DetailedView item={item} isViewOpen={isDetailedViewOpen} setViewOpen={setDetailedViewOpen}/> </div>} 
+                children={<div className="" ref={areaRef}> <DetailedView dummy={dummy} item={item}/> </div>} 
             />}  
         </div>
         
