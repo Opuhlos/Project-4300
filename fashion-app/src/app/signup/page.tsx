@@ -12,10 +12,19 @@ import { redirect } from "next/navigation";
 import { User } from "@/models/User";
 
 
-const Signup = async () => {
+const Signup = async ({ searchParams }: { searchParams: {error?: string }}) => {
     const session = await getSession();
     const user = session?.user;
     if (user) redirect("/profile");
+
+    const errorMessage = searchParams?.error ? decodeURIComponent(searchParams.error) : null;
+
+    if (errorMessage) {
+      // Trigger an alert with the error message when the page loads
+      if (typeof window !== 'undefined') {
+        alert(errorMessage);
+      }
+    }
 
     return (
       <>
@@ -27,6 +36,7 @@ const Signup = async () => {
               <div className = "flex flex-row">
               <div className = "flex flex-col mt-10 mr-10">
               <form action={register}>
+                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                 <div> 
                   <h3 className = {`${grotesk.className}font-medium text-lg` }>First Name</h3>
                   <Input id="name" placeholder="Yevone" type="text" name="name" />
@@ -47,16 +57,7 @@ const Signup = async () => {
               <div className={"h-[229px] w-[252px] bg-black border border-hidden overflow-hidden my-20"}>
                   <Image src={"/images/ExtraGroup.png"} alt="Dressing" width={252} height={229}/>
               </div>
-              <form
-                action={async () => {
-                  "use server"
-                  await signIn("google", { redirectTo: "/styles"})
-                }}>
-                <button className="px-4 py-2 border flex gap-2 border-dark rounded-lg text-slate-700 dark:text-slate-200 bg-dark dark:hover:bg-gray-700 hover:text-white transition duration-150">
-                  <Image className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy"  width={24} height={24} alt="google logo"></Image>
-                  <span>Signup with Google</span>
-                </button>
-              </form>
+              
               <p>
                 Already have an account? <Link className = "hover:text-orange transition duration-150" href="/login">Login</Link>
               </p>

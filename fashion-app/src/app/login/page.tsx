@@ -10,10 +10,19 @@ import { login } from "@/action/user";
 import { redirect } from "next/navigation";
 import { getSession } from "@/libs/getSession";
 
-const Login = async () => {
+const Login = async ({ searchParams }: { searchParams: {error?: string }}) => {
   const session = await getSession();
   const user = session?.user;
   if(user) redirect('/profile');
+
+  const errorMessage = searchParams?.error ? decodeURIComponent(searchParams.error) : null;
+
+  if (errorMessage) {
+    // Trigger an alert with the error message when the page loads
+    if (typeof window !== 'undefined') {
+      alert(errorMessage);
+    }
+  }
 
     return (
       
@@ -24,6 +33,7 @@ const Login = async () => {
           <div className = "flex flex-row">
           <div className = "flex flex-col justify-center mt-10 mr-10">
           <form action={ login }>
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <h3 className = {`${grotesk.className}font-medium text-lg` }>Email Address</h3>
             <Input id="email" placeholder="yevone@gmail.com" type="email" name="email" />
 
@@ -39,16 +49,7 @@ const Login = async () => {
           <div className={"h-[229px] w-[252px] bg-black border border-hidden overflow-hidden my-2"}>
               <Image src={"/images/ExtraGroup.png"} alt="Dressing" width={252} height={229}/>
           </div>
-          <form
-            action={async () => {
-              "use server"
-              await signIn("google", { redirectTo: "/profile" })
-          }}>
-            <button className="px-4 py-2 border flex gap-2 border-dark rounded-lg text-slate-700 dark:text-slate-200 bg-dark dark:hover:bg-gray-700 hover:text-white transition duration-150">
-              <Image className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy"  width={24} height={24} alt="google logo"></Image>
-              <span>Login with Google</span>
-            </button>
-          </form>
+          
           </div>
           </div>
         </div>

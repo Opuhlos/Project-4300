@@ -21,8 +21,12 @@ const login = async (formData: FormData) => {
             password,
         });
     } catch (error) {
+        /*
         const err = error as CredentialsSignin;
         return err.cause;
+        */
+       redirect(`/login?error=${encodeURIComponent('Invalid credentials.')}`)
+       //throw new Error('Invalid credentials');
     }
     redirect("/");
 
@@ -35,7 +39,8 @@ const register = async (formData: FormData) => {
     const password = formData.get("password") as string;
 
     if(!name || !lastName || !email || !password) {
-        throw new Error("Please fill all fields");
+        redirect(`/signup?error=${encodeURIComponent('Please fill out all fields.')}`)
+        //throw new Error("Please fill all fields");
     }
 
     await connectMongoDB();
